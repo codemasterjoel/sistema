@@ -11,7 +11,9 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/app.js", "public/assets/js/soft-ui-dashboard.js");
+mix.js("resources/js/app.js", "public/assets/js/soft-ui-dashboard.js")
+    .postCss("resources/css/app.css", "public/css", [
+        require("tailwindcss")]);
 mix.sass(
     "resources/scss/soft-ui-dashboard.scss",
     "public/assets/css/soft-ui-dashboard.css"
