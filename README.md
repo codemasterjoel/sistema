@@ -30,27 +30,14 @@ We also included detailed documentation for every component and feature so you c
 
 If you want to get more features, go PRO with [Soft UI Dashboard PRO Laravel Livewire](https://www.creative-tim.com/product/soft-ui-dashboard-pro-laravel-livewire).
 
-## Table of Contents
+## Extenciones Necesarias
 
-* [Prerequisites](#prerequisites)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Versions](#versions)
-* [Demo](#demo)
-* [Documentation](#documentation)
-* [Login](#login)
-* [Register](#register)
-* [Forgot Password](#forgot-password)
-* [Reset Password](#reset-password)
-* [User Profile](#user-profile)
-* [Dashboard](#dashboard)
-* [File Structure](#file-structure)
-* [Browser Support](#browser-support)
-* [Reporting Issues](#reporting-issues)
-* [Licensing](#licensing)
-* [Useful Links](#useful-links)
-* [Social Media](#social-media)
-* [Credits](#credits)
+- Livewire
+- tailwind
+- SimpleQrCode
+- DomPDF
+
+
 
 ## Prerequisites
 
