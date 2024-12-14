@@ -16,6 +16,6 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.infoqr.index')->layout('layouts.single');
+        return view('livewire.reporte.info')->layout('layouts.single');
     }
 }

@@ -44,6 +44,8 @@ Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-passwo
 
 Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')->middleware('signed');
 
+Route::get('/info/{id}', infoqr::class)->name('infoqr');
+
 Route::middleware('auth')->group(function () {
     Route::get('/1x10ffm', ffm::class)->name('ffm');
     Route::get('/lsb', registrolsb::class)->name('lsb');
@@ -58,7 +60,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/perfil', UserProfile::class)->name('perfil');
     Route::get('/formacion', formacion::class)->name('formacion');
     Route::get('/reporte', reporte::class)->name('reporte');
-    Route::get('/info/{id}', infoqr::class)->name('infoqr');
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/tables', Tables::class)->name('tables');
