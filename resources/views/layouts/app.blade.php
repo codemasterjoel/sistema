@@ -42,7 +42,7 @@
         @if (!auth()->check() && in_array(request()->route()->getName(),['login'],))
             @include('layouts.navbars.guest.login')
             {{ $slot }}
-            <div class="mt-5">
+            <div class="mt-4">
                 @include('layouts.footers.guest.with-socials')
             </div>
 
