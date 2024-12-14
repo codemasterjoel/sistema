@@ -6,8 +6,8 @@
             <div class="row" style="align-content: center">
               <img src="{{asset('img/logocenso.png')}}" width="200" style="display: block; margin:auto">
             </div>
-            <div class="row mx-28" style="align-content: center">
-              <img src="{{asset('assets/img/marie.jpg')}}" class=" rounded-full mx-28" style="display: block; margin:auto">
+            <div class="row mx-20" style="align-content: center">
+              <img src="{{asset('assets/img/marie.jpg')}}" class=" rounded-full" style="display: block; margin:auto">
             </div>
             <div class="row mt-4">
               <div class="col-3">
