@@ -45,7 +45,8 @@
             <img src="assets/img/card_back.jpg" style="width:204px;height:329px"/>
         </div>
         <div class="watermark" style="position:absolute;top:240px;left:110px;height:40%;width:40%;z-index:1000;">
-            <img class="qr-code" src="assets/img/descarga.png" style="width:80px;height:80px;"></img>
+            {{-- <img class="qr-code" src="assets/img/descarga.png" style="width:80px;height:80px;"></img> --}}
+            <img style="width:80px;height:80px;" src="data:image/png;base64, {!! base64_encode(QrCode::format('svg')->size(150)->generate('https://sistema.joelzerpa.emprende.ve/info/'.$lsb->id)) !!} ">
         </div>
         <div style="position:absolute;top:260px;left:30px;width:250px;font-size:10px;color:White;font-weight: bold;">
             <p>
