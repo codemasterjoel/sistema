@@ -27,8 +27,9 @@ class postulacion extends Model
         'parroquia_id',
         'direccion',
         'id',
-        'pais_id',
-        'letra'
+        'letra',
+        'nivel_id',
+
     ];
 
     public function estado()

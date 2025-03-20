@@ -14,7 +14,10 @@ return new class extends Migration
             $table->uuid('id')->primary()->default(Uuid::uuid4()->toString());
             $table->string('letra')->default('V');
             $table->boolean('estatus')->default(false);
+            $table->boolean('vocero')->default(false);
+            $table->boolean('cargo_popular')->default(false);
             $table->Integer('cedula')->unique();
+            $table->string('cargo')->nullable();
             $table->string('nombre');
             $table->string('apellido');
             $table->date('fecha_nac');
@@ -25,6 +28,7 @@ return new class extends Migration
             $table->foreignIdFor(Pais::class)->nullable()->references('id')->on('pais')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('genero_id')->nullable()->references('id')->on('generos')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('nivel_academico_id')->nullable()->references('id')->on('nivel_academicos')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('nivel_id')->nullable()->references('id')->on('nivels')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('estado_id')->nullable()->references('id')->on('estados')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('municipio_id')->nullable()->references('id')->on('municipios')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('parroquia_id')->nullable()->references('id')->on('parroquias')->nullOnDelete()->cascadeOnUpdate();

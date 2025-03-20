@@ -8,6 +8,7 @@ use App\Models\Municipio;
 use App\Models\Parroquia;
 use App\Models\Genero;
 use App\Models\NivelAcademico;
+use App\Models\Nivel;
 use App\Models\postulacion;
 use App\Models\Pais;
 
@@ -16,14 +17,14 @@ use Ramsey\Uuid\Uuid;
 class Index extends Component
 {
     public $modal, $estado, $modalReset = false;
-    public $paises, $estados, $municipios, $parroquias, $nivelesAcademicos, $generos = null; // Listas desplegables
+    public $paises, $estados, $municipios, $parroquias, $nivelesAcademicos, $generos, $niveles = null; // Listas desplegables
     public $cedula = null; //Cedula
     public $telefono = null; //Telefono
     public $correo = null; //Correo
     public $fechaNacimiento = null; //Fecha Nacimiento
     public $nombre, $apellido  = null; //Nombres
     public $direccion = null; //Direccion
-    public $nacionalidad, $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $generoId = null; //Id que recibo de las listas desplegables
+    public $nacionalidad, $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $nivelId, $generoId, $perteneceAlPSUV = null; //Id que recibo de las listas desplegables
 
     public function mount()
     {
@@ -34,7 +35,7 @@ class Index extends Component
         $this->estados = Estado::all();
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->generos = Genero::all();
-        $this->paises = Pais::all();
+        $this->niveles = Nivel::all();
 
         return view('livewire.postulacion.index')->layout('layouts.single');
     }
@@ -73,7 +74,7 @@ class Index extends Component
             'correo' => 'required|email:rfc',
             'direccion' => 'required',
             'nacionalidad' => 'required',
-            'paisId' => 'required'
+            'paisId' => 'required', 
         ]);
         
         $lsb = postulacion::create([
@@ -91,7 +92,7 @@ class Index extends Component
             'parroquia_id' => $this->parroquiaId,
             'direccion' => $this->direccion,
             'letra' => $this->nacionalidad,
-            'pais_id' => $this->paisId,
+            'nivel_id' => $this->nivelId,
         ]);
          
         session()->flash('success', 'success');

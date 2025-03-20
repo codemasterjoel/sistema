@@ -10,12 +10,7 @@
                     <div class="flex justify-center">
                         <img src="{{asset('img/logo.svg')}}" class="w-52">
                     </div>
-                    <span class=" font-italic text-red-400">El Frente Francisco de Miranda es una organización política disciplinada,
-                        antiimperialista, dinámica y organizada; fundamental en la lucha por erradicar la
-                        pobreza en todas sus manifestaciones y por alcanzar la igualdad social en
-                        Venezuela.</span>
-                    <h3 class="text-2xl text-cyan-400 font-bold text-center mt-2">¿QUIERES PERTENECER AL FRENTE FRANCISCO DE MIRANDA?</h3>
-                    <h3 class="text-xl text-red-400 font-bold text-center pb-4">LLENA EL FORMULARIO</h3>
+                    <h3 class="text-2xl text-cyan-400 font-bold text-center mt-2 mb-4">CAMPAMENTO ESCUELA DE BASE ROBINSONIANA</h3>
                     <form>
                         <div class="row">
                             <div class="col-xl-4 col-sm-12 mb-xl-0">
@@ -39,22 +34,6 @@
                                         <div class="flex">
                                             <span class="flex bg-cyan-900 text-white items-center font-bold whitespace-nowrap rounded-l-lg border-r-0 border-solid px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Cédula</span>
                                             <input wire:model="cedula" type="text" class="w-full pl-2 border text-neutral-900 font-bold rounded-r-lg border-neutral-900" onkeypress="$(this).mask('00000000')" maxlength="8" title="debe colocar una cedula valida">
-                                        </div>
-                                        @error('cedula') <div class="text-danger">{{ $message }}</div> @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-sm-12 mb-xl-0">
-                                <div class="flex items-center justify-center pb-4"> {{-- campo cedula --}}
-                                    <div class="w-full rounded-lg">
-                                        <div class="flex">
-                                            <span class="flex bg-cyan-900 text-white items-center font-bold whitespace-nowrap rounded-l-lg border-r-0 border-solid px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Pais</span>
-                                            <select wire:model="paisId" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
-                                                <option value="">Seleccione</option>
-                                                @foreach( $paises as $pais )
-                                                    <option value="{{ $pais->id }}">{{ $pais->nombre }}</option>
-                                                @endforeach
-                                            </select>
                                         </div>
                                         @error('cedula') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
@@ -187,6 +166,40 @@
                                     </div>
                                 @endif
                             </div>
+                        </div>
+                        <div class="row pb-4">
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                <div class="flex items-container justify-center"> {{-- campo Direccion --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
+                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="perteneceAlPSUV" />
+                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                                  <span>SI</span>
+                                                  <span>NO</span>
+                                              </div><h5 class="p-2"> Pertenece al PSUV/JPSUV?</h5>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if ($perteneceAlPSUV)
+                                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0"> {{-- campo cedula --}}
+                                <div class="flex items-center justify-center">
+                                    <div class="w-full rounded-lg bg-gray-500">
+                                        <div class="flex">
+                                            <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold ">Nivel</span>
+                                            <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-neutral-900 font-bold border-solid outline-2" wire:model="nivelId" required>
+                                                <option value="">Seleccione</option>
+                                                @foreach( $niveles as $nivel )
+                                                <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="flex items-center justify-center pb-4"> {{-- campo Direccion --}}
