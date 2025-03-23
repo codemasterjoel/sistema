@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('letra')->default('V');
             $table->boolean('estatus')->default(false);
             $table->boolean('vocero')->default(false);
+            $table->boolean('pertenece_al_psuv')->default(false);
             $table->boolean('cargo_popular')->default(false);
             $table->Integer('cedula')->unique();
             $table->string('cargo')->nullable();
@@ -24,8 +25,7 @@ return new class extends Migration
             $table->string('telefono')->nullable();
             $table->string('correo');
             $table->string('direccion', 200);
-            // $table->string('pais_id');
-            $table->foreignIdFor(Pais::class)->nullable()->references('id')->on('pais')->nullOnDelete()->cascadeOnUpdate();
+            // $table->foreignIdFor(Pais::class)->nullable()->references('id')->on('pais')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('genero_id')->nullable()->references('id')->on('generos')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('nivel_academico_id')->nullable()->references('id')->on('nivel_academicos')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('nivel_id')->nullable()->references('id')->on('nivels')->nullOnDelete()->cascadeOnUpdate();

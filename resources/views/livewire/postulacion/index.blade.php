@@ -173,17 +173,17 @@
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
                                             <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
-                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="perteneceAlPSUV" />
+                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="pertenece_al_psuv" />
                                               <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
                                                   <span>SI</span>
                                                   <span>NO</span>
-                                              </div><h5 class="p-2"> Pertenece al PSUV/JPSUV?</h5>
+                                              </div><h5 class="p-2">¿Pertenece al PSUV/JPSUV?</h5>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @if ($perteneceAlPSUV)
+                            @if ($pertenece_al_psuv)
                                 <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0"> {{-- campo cedula --}}
                                 <div class="flex items-center justify-center">
                                     <div class="w-full rounded-lg bg-gray-500">
@@ -200,6 +200,58 @@
                                 </div>
                                 </div>
                             @endif
+                        </div>
+                        <div class="row pb-4">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                <div class="flex items-container justify-center"> {{-- campo Direccion --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
+                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="vocero" />
+                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                                  <span>SI</span>
+                                                  <span>NO</span>
+                                              </div><h5 class="p-2">¿Es Vocero del Consejo Comunal?</h5>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pb-4">
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                <div class="flex items-container justify-center"> {{-- campo Direccion --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
+                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="cargo_popular" />
+                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                                  <span>SI</span>
+                                                  <span>NO</span>
+                                              </div><h5 class="p-2">¿Cuenta con un Cargo de elección popular?</h5>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if ($cargo_popular == 1)
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0"> {{-- campo cedula --}}
+                                <div class="flex items-center justify-center">
+                                    <div class="w-full rounded-lg bg-gray-500">
+                                        <div class="flex">
+                                            <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold ">Cargo</span>
+                                            <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-neutral-900 font-bold border-solid outline-2" wire:model="cargo" required>
+                                                <option value="">Seleccione</option>
+                                                <option value="Diputado(a)">Diputado(a)</option>
+                                                <option value="Legislador(a)">Legislador(a)</option>
+                                                <option value="Alcalde(a)">Alcalde(a)</option>
+                                                <option value="Concejal(a)">Concejal(a)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         </div>
 
                         <div class="flex items-center justify-center pb-4"> {{-- campo Direccion --}}

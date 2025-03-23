@@ -29,7 +29,10 @@ class postulacion extends Model
         'id',
         'letra',
         'nivel_id',
-
+        'pertenece_al_psuv',
+        'cargo',
+        'vocero',
+        'cargo_popular',
     ];
 
     public function estado()

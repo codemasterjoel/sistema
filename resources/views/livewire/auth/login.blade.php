@@ -8,7 +8,7 @@
     <div class="page-header section-height-75">
         <div class="container">
             <div class="nav-item d-flex p-2 flex z-40">
-                <a href="/postulacion" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase absolute text-xl" role="button" aria-pressed="true">Te gustaria pertener al FFM!!</a>
+                <a href="/postulacion" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase absolute text-2xl" role="button" aria-pressed="true">Escuela de Base, REGISTRATE!!</a>
             </div>
             <div class="row">
                 <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">

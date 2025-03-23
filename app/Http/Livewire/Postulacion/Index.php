@@ -17,14 +17,14 @@ use Ramsey\Uuid\Uuid;
 class Index extends Component
 {
     public $modal, $estado, $modalReset = false;
-    public $paises, $estados, $municipios, $parroquias, $nivelesAcademicos, $generos, $niveles = null; // Listas desplegables
+    public $estados, $municipios, $parroquias, $nivelesAcademicos, $generos, $niveles = null; // Listas desplegables
     public $cedula = null; //Cedula
     public $telefono = null; //Telefono
     public $correo = null; //Correo
     public $fechaNacimiento = null; //Fecha Nacimiento
     public $nombre, $apellido  = null; //Nombres
     public $direccion = null; //Direccion
-    public $nacionalidad, $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $nivelId, $generoId, $perteneceAlPSUV = null; //Id que recibo de las listas desplegables
+    public $nacionalidad, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $nivelId, $generoId, $pertenece_al_psuv, $cargo, $vocero, $cargo_popular = null; //Id que recibo de las listas desplegables
 
     public function mount()
     {
@@ -50,17 +50,10 @@ class Index extends Component
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
     }
-    public function updatedNacionalidad($id)
-    {
-        if ($id == 'V') {
-            $this->paisId = 'VE';
-        }else{
-            $this->paisId = null;
-        }
-    }
     public function guardar()
     {
         $this->validate([
+            'nacionalidad' => 'required',
             'cedula' => 'required|min:7|max:8|unique:postulacions,cedula',
             'nombre' => 'required',
             'apellido' => 'required',
@@ -73,8 +66,11 @@ class Index extends Component
             'parroquiaId' => 'required',
             'correo' => 'required|email:rfc',
             'direccion' => 'required',
-            'nacionalidad' => 'required',
-            'paisId' => 'required', 
+            'nivelId' => 'required',
+            'pertenece_al_psuv' => 'required',
+            'cargo' => 'required',
+            'vocero' => 'required',
+            'cargo_popular' => 'required',
         ]);
         
         $lsb = postulacion::create([
@@ -93,13 +89,16 @@ class Index extends Component
             'direccion' => $this->direccion,
             'letra' => $this->nacionalidad,
             'nivel_id' => $this->nivelId,
+            'pertenece_al_psuv' => $this->pertenece_al_psuv,
+            'cargo' => $this->cargo,
+            'vocero' => $this->vocero,
+            'cargo_popular' => $this->cargo_popular,
         ]);
          
         session()->flash('success', 'success');
          
+        $this->limpiarCampos();
         return redirect('login');
-         $this->cerrarModal();
-         $this->limpiarCampos();
     }
     public function limpiarCampos()
     {
@@ -116,7 +115,11 @@ class Index extends Component
         $this->parroquiaId = null;
         $this->direccion = null;
         $this->nacionalidad = null;
-        $this->paisId;
+        $this->nivelId = null;
+        $this->pertenece_al_psuv = null;
+        $this->cargo = null;
+        $this->vocero = null;
+        $this->cargo_popular = null;
     }
     public function cerrarModal() 
     {
