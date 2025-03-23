@@ -18,6 +18,7 @@
                 </a>
             </li>
             {{-- PERFIL DE USUARIO --}}
+            @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'perfil' ? 'active' : '' }}" href="{{ route('perfil') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -26,7 +27,9 @@
                         <span class="nav-link-text ms-1"><b>PERFIL</b></span>
                     </a>
                 </li>
+            @endif
             {{-- REGISTRO DE LSB --}}
+            @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'lsb' ? 'active' : '' }}" href="{{route('lsb')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -43,7 +46,9 @@
                         <span class="nav-link-text ms-1"><b>REGISTRO 1x10 FFM</b></span>
                     </a>
                 </li>
+            @endif
             {{-- REGISTRO DE NBC --}}
+            @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'nbc' ? 'active' : '' }}" href="{{route('nbc')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -52,10 +57,10 @@
                         <span class="nav-link-text ms-1"><b>REGISTRO DE NBC</b></span>
                     </a>
                 </li>
-
+            @endif
             <!-- FORMACION -->
              
-            @if (auth()->user()->nivel_id == 1)
+            @if (auth()->user()->nivel_id == 1 || auth()->user()->nivel_id == 2)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'formacion' ? 'active' : '' }}" href="{{route('formacion')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

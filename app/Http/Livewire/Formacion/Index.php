@@ -37,7 +37,7 @@ class Index extends Component
     public $telefono = null; //Telefono
     
     public $search = "";
-    public $data = "luchador";
+    public $data = "postulados";
 
     public function updatingSearch()
     {
@@ -48,7 +48,8 @@ class Index extends Component
         $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
         ->where('estado_id', '<>', '25')
         ->paginate(5);
-        $postulados = postulado::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')	
+        $postulados = postulado::where('cedula', 'like', "%$this->search%")
+        ->where('estado_id', '=', auth()->user()->estado_id)
         ->paginate(5);
         $formacions = Formacion::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')	
         ->paginate(5);
@@ -89,7 +90,6 @@ class Index extends Component
             $this->parroquia = null;
         }
         
-
         $this->modalLuchador = true;
 
     }
@@ -142,5 +142,9 @@ class Index extends Component
     public function cerrarModalFormacion() 
     {
         $this->modalFormacion = false;
+    }
+    public function certificado($id)
+    {
+        
     }
 }

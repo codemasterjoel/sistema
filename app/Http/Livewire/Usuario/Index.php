@@ -76,7 +76,7 @@ class Index extends Component
     }
     public function guardar()
     {
-        if ($this->nivelId = 1) {
+        if ($this->nivelId == 1) {
             $this->estadoId = 25;
         }
         if ($this->showPassword) {
