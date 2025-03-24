@@ -66,11 +66,6 @@ class Index extends Component
             'parroquiaId' => 'required',
             'correo' => 'required|email:rfc',
             'direccion' => 'required',
-            'nivelId' => 'required',
-            'pertenece_al_psuv' => 'required',
-            'cargo' => 'required',
-            'vocero' => 'required',
-            'cargo_popular' => 'required',
         ]);
         
         $lsb = postulacion::create([
