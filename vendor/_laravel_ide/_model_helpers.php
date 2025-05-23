@@ -3405,6 +3405,7 @@ namespace App\Models {
      * @property mixed $nivel_id
      * @property mixed $nivel_academico_id
      * @property mixed $genero_id
+     * @property string|null $pais_id
      * @property string $direccion
      * @property string $correo
      * @property string|null $telefono
@@ -3438,6 +3439,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereTelefono($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCorreo($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereDireccion($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion wherePaisId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereGeneroId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereNivelAcademicoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereNivelId($value)

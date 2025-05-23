@@ -14,9 +14,9 @@ return new class extends Migration
             $table->uuid('id')->primary()->default(Uuid::uuid4()->toString());
             $table->string('letra')->default('V');
             $table->boolean('estatus')->default(false);
-            $table->boolean('vocero')->nullable();
-            $table->boolean('pertenece_al_psuv')->nullable();
-            $table->boolean('cargo_popular')->nullable();;
+            $table->boolean('vocero')->default(false);
+            $table->boolean('pertenece_al_psuv')->default(false);
+            $table->boolean('cargo_popular')->default(false);
             $table->Integer('cedula')->unique();
             $table->string('cargo')->nullable();
             $table->string('nombre');
