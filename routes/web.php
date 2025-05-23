@@ -26,6 +26,7 @@ use App\Http\Livewire\Formacion\Index as formacion;
 use App\Http\Livewire\Reporte\Index as reporte;
 use App\Http\Livewire\Infoqr\Index as infoqr;
 use App\Http\Livewire\Sessions\Index as sessions;
+use App\Http\Livewire\Cuadernillo\Index as cuadernillo;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
@@ -48,6 +49,7 @@ Route::get('/info/{id}', infoqr::class)->name('infoqr');
 
 Route::middleware('auth')->group(function () {
     Route::get('/1x10ffm', ffm::class)->name('ffm');
+    Route::get('/cuadernillo', cuadernillo::class)->name('cuadernillo');
     Route::get('/lsb', registrolsb::class)->name('lsb');
     Route::get('/nbc', registronbc::class)->name('nbc');
     Route::get('/nbc/crear', crearnbc::class)->name('nbc.crear');

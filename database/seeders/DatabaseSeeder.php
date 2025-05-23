@@ -28,18 +28,20 @@ class DatabaseSeeder extends Seeder
         $this->call(EstadoSeeder::class);
         $this->call(MunicipioSeeder::class);
         $this->call(ParroquiaSeeder::class);
-        $this->call(CentrosSeeder::class);
-        $this->call(Centros2Seeder::class);
-        $this->call(Centros3Seeder::class);
-        $this->call(AvanzadaSeeder::class);
-        $this->call(GeneroSeeder::class);
-        $this->call(NivelAcademicoSeeder::class);
-        $this->call(ResponsabilidadSeeder::class);
-        $this->call(RegistroLuchadorSeeder::class);
+        // $this->call(CentrosSeeder::class);
+        // $this->call(Centros2Seeder::class);
+        // $this->call(Centros3Seeder::class);
+        // $this->call(AvanzadaSeeder::class);
+        // $this->call(GeneroSeeder::class);
+        // $this->call(NivelAcademicoSeeder::class);
+        // $this->call(ResponsabilidadSeeder::class);
+        // $this->call(RegistroLuchadorSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(SaimeSeeder::class);
-        $this->call(cneSeeder::class);
-        $this->call(AreaSeeder::class);
-        $this->call(FormacionSeeder::class);
+        $this->call(ubchSeeder::class);
+        // $this->call(SaimeSeeder::class);
+        // $this->call(cneclear
+        // Seeder::class);
+        // $this->call(AreaSeeder::class);
+        // $this->call(FormacionSeeder::class);
     }
 }

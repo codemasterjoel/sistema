@@ -8,13 +8,13 @@
     <div class="page-header section-height-75">
         <div class="container">
             <div class="nav-item d-flex p-2 flex z-40">
-                <a href="/postulacion" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase absolute text-2xl" role="button" aria-pressed="true">Escuela de Base, REGISTRATE!!</a>
+                {{-- <a href="/postulacion" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase absolute text-2xl" role="button" aria-pressed="true">Escuela de Base, REGISTRATE!!</a> --}}
             </div>
             <div class="row">
                 <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
                     <div class="card card-plain mt-2">
                         <div class="card-header pb-0 text-left bg-transparent">
-                            <img src="{{asset('img/logo.svg')}}" class="navbar-brand-img h-100">
+                            <img src="{{asset('img/logocenso.png')}}" class="navbar-brand-img h-100">
                         </div>
                         <div class="card-body">
                             <form wire:submit="login" action="#" method="POST" role="form text-left">
@@ -33,7 +33,7 @@
                                     @error('password') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class=" text-end -mt-3">
-                                    <a href="#" wire:click="resetPassword()" class=" text-red-500 text-uppercase font-bold" role="button" aria-pressed="true">¿Olvido la Contraseña?</a>
+                                    {{-- <a href="#" wire:click="resetPassword()" class=" text-red-500 text-uppercase font-bold" role="button" aria-pressed="true">¿Olvido la Contraseña?</a> --}}
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn bg-gradient-danger w-100 mt-4 mb-0 font-bold">{{ __('Ingresar') }}</button>
