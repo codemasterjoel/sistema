@@ -23,6 +23,8 @@ class ubch extends Model
         'parte7',
         'cerro',
         'final',
+        'meta',
+        'cumplido',
     ];
     public function parroquia()
     {

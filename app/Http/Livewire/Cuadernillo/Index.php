@@ -14,9 +14,9 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
     
     public $parroquias, $parroquiaId, $centros2, $centroId, $id = null;
-    public $parte8, $parte9, $parte10, $parte11, $parte12, $parte1, $parte2, $parte3, $parte4, $parte5, $parte6, $parte7, $final, $aperturo, $cerro = null;
+    public $parte8, $parte9, $parte10, $parte11, $parte12, $parte1, $parte2, $parte3, $parte4, $parte5, $parte6, $parte7, $final = null;
     public $search = "";
-    public $modal = false;
+    public $modal, $cumplido, $cerro, $aperturo = false;
     public function updatingSearch()
     {
         $this->resetPage();
@@ -30,7 +30,23 @@ class Index extends Component
     }
     public function crear($id) 
     {
+        $ubch = ubch::findOrFail($id);
+
         $this->id = $id;
+        $this->aperturo = (isset($ubch->aperturo)) ? true : false ;
+        $this->parte8 = $ubch->parte8;
+        $this->parte9 = $ubch->parte9;
+        $this->parte10 = $ubch->parte10;
+        $this->parte11 = $ubch->parte11;
+        $this->parte12 = $ubch->parte12;
+        $this->parte1 = $ubch->parte1;
+        $this->parte2 = $ubch->parte2;
+        $this->parte3 = $ubch->parte3;
+        $this->parte4 = $ubch->parte4;
+        $this->parte5 = $ubch->parte5;
+        $this->parte6 = $ubch->parte6;
+        $this->parte7 = $ubch->parte7;
+        $this->cerro = (isset($ubch->cerro)) ? true : false ;
         $this->modal = true;
     }
     public function cerrarModal() 
@@ -40,9 +56,13 @@ class Index extends Component
     }
     public function guardar($id)
     {
-        $saime = ubch::findOrFail($id);
+        $ubch = ubch::findOrFail($id);
 
         $this->final = max($this->parte8, $this->parte9, $this->parte10, $this->parte11, $this->parte12, $this->parte1, $this->parte2, $this->parte3, $this->parte4, $this->parte5, $this->parte6, $this->parte7);
+
+        if ($this->final >= $ubch->meta) {
+            $this->cumplido = true;
+        }
 
         $reporte = ubch::updateOrCreate(['id' => $this->id],
             [
@@ -61,6 +81,7 @@ class Index extends Component
             'parte7' => $this->parte7,
             'cerro' => $this->cerro,
             'final' => $this->final,
+            'cumplido' => $this->cumplido,
         ]);
         session()->flash('success', 'success');
         

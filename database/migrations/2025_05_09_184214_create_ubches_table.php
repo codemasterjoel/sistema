@@ -29,8 +29,10 @@ return new class extends Migration
             $table->integer('parte5')->nullable();
             $table->integer('parte6')->nullable();
             $table->integer('parte7')->nullable();
+            $table->integer('meta');
             $table->integer('final')->nullable();
             $table->boolean('cerro')->nullable();
+            $table->boolean('cumplido')->default(false);
 
             $table->integer('mesas');
             $table->timestamps();

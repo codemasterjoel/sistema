@@ -65,7 +65,7 @@
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Cumplieron Meta</p>
-                    <h5 class="font-weight-bolder mb-0">{{$parroquias->count()}}</h5>
+                    <h5 class="font-weight-bolder mb-0">{{$parroquias->where('cumplido', true)->count()}}</h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -84,7 +84,7 @@
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Por Cumplir meta</p>
-                    <h5 class="font-weight-bolder mb-0">{{$parroquias->count()}}</h5>
+                    <h5 class="font-weight-bolder mb-0">{{$parroquias->where('cumplido', false)->count()}}</h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -232,28 +232,28 @@
                 borderWidth: 4,
                 borderSkipped: false,
                 data:[
-                  {{ $parroquias->where('parroquia_id', 3)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 1)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 12)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 2)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 17)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 3)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 19)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 18)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 22)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 13)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 14)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 4)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 15)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 16)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 5)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 21)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 6)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 7)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 20)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 8)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 9)->sum('final')}},
-                  {{ $parroquias->where('parroquia_id', 10)->sum('final')}}
+                  <?php echo $parroquias->where('parroquia_id', 11)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 1)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 12)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 2)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 17)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 3)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 19)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 18)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 22)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 13)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 14)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 4)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 15)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 16)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 5)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 21)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 6)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 7)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 20)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 8)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 9)->sum('final'); ?>,
+                  <?php echo $parroquias->where('parroquia_id', 10)->sum('final'); ?>,
                 ],
                 backgroundColor: [
                   'rgba(54, 162, 235, 0.2)',
