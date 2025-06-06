@@ -3,24 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
-
-class RegistroLuchador extends Model
+class Campamento extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+
     public $incrementing = false;
     protected $keyType = 'string';
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->id = (string) Str::uuid();
-        });
-    }
 
     protected $fillable = [
         'estatus',
@@ -30,19 +20,14 @@ class RegistroLuchador extends Model
         'fecha_nac',
         'telefono',
         'correo',
-        'avanzada_id',
         'genero_id',
         'nivel_academico_id',
-        'responsabilidad_id',
         'estado_id',
         'municipio_id',
         'parroquia_id',
         'direccion',
-        'pais_id',
+        'id',
         'letra',
-        'edad',
-        'inactivo',
-        'hijos',
         'nivel_id',
         'pertenece_al_psuv',
         'cargo',
@@ -53,10 +38,6 @@ class RegistroLuchador extends Model
     public function estado()
     {
         return $this->belongsTo(Estado::class);
-    }
-    public function avanzada()
-    {
-        return $this->belongsTo(Avanzada::class);
     }
     public function genero()
     {
@@ -73,13 +54,5 @@ class RegistroLuchador extends Model
     public function nivelAcademico()
     {
         return $this->belongsTo(NivelAcademico::class);
-    }
-    public function responsabilidad()
-    {
-        return $this->belongsTo(Responsabilidad::class);
-    }
-    public function nbc()
-    {
-        return $this->belongsTo(NBC::class);
     }
 }

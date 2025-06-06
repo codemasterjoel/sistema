@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Postulacion;
+namespace App\Http\Livewire\Campamento;
 
 use Livewire\Component;
+
 use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Parroquia;
@@ -10,10 +11,8 @@ use App\Models\Genero;
 use App\Models\NivelAcademico;
 use App\Models\Nivel;
 use App\Models\postulacion;
-use App\Models\Pais;
 
 use Ramsey\Uuid\Uuid;
-
 class Index extends Component
 {
     public $modal, $estado, $modalReset = false;
@@ -25,15 +24,13 @@ class Index extends Component
     public $nombre, $apellido  = null; //Nombres
     public $direccion = null; //Direccion
     public $nacionalidad, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $nivelId, $generoId, $pertenece_al_psuv, $cargo, $vocero, $cargo_popular = null; //Id que recibo de las listas desplegables
-
     public function render()
     {
         $this->estados = Estado::all();
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->generos = Genero::all();
         $this->niveles = Nivel::all();
-
-        return view('livewire.postulacion.index')->layout('layouts.single');
+        return view('livewire.campamento.index')->layout('layouts.single');
     }
     public function updatedEstadoId($id)
     {

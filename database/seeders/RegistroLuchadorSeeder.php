@@ -13,7 +13,6 @@ class RegistroLuchadorSeeder extends Seeder
         RegistroLuchador::insert([[
             'id' => 'a3f2946a-68cc-40d3-a138-ba22aae09990',
             'letra' => 'V',
-            'pais_id' => 'VE',
             'edad'  => '34',
             'estatus' => true,
             'cedula' => '19491796',
@@ -29,7 +28,10 @@ class RegistroLuchadorSeeder extends Seeder
             'estado_id' => '1',
             'municipio_id'  => '101',
             'parroquia_id'  => '10122',
-            'direccion' => 'CALLE 10'
+            'direccion' => 'CALLE 10',
+            'vocero' => false,
+            'pertenece_al_psuv' => false,
+            'cargo_popular' => false,
         ]]);
     }
 }

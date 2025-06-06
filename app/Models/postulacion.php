@@ -4,13 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class postulacion extends Model
 {
     use HasFactory;
-
     public $incrementing = false;
     protected $keyType = 'string';
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->id = (string) Str::uuid();
+        });
+    }
 
     protected $fillable = [
         'estatus',
@@ -20,14 +28,19 @@ class postulacion extends Model
         'fecha_nac',
         'telefono',
         'correo',
+        'avanzada_id',
         'genero_id',
         'nivel_academico_id',
+        'responsabilidad_id',
         'estado_id',
         'municipio_id',
         'parroquia_id',
         'direccion',
-        'id',
+        'pais_id',
         'letra',
+        'edad',
+        'inactivo',
+        'hijos',
         'nivel_id',
         'pertenece_al_psuv',
         'cargo',

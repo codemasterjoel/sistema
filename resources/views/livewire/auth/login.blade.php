@@ -5,10 +5,22 @@
     @if(session()->has('success')== 'success')
         @include('livewire.components.success')
     @endif
-    <div class="page-header section-height-75">
-        <div class="container">
-            <div class="nav-item d-flex p-2 flex z-40">
-                <a href="/postulacion" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase absolute text-2xl" role="button" aria-pressed="true">Escuela de Base, REGISTRATE!!</a>
+    <div class="page-header">
+        <div class="container m-0">
+            <div class="row mt-2">
+                <div class="col-xl-6 col-sm-12 col-md-6 col-lg-3 mb-xl-0 pb-4">
+                    <div class="flex items-start justify-start pb-4">
+                        <div class="text-left"><a href="/campamento" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase text-xl absolute" role="button" aria-pressed="true">Escuela de Base</a></div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-12 col-md-6 col-lg-3 mb-xl-0">
+                    <div class="flex items-start justify-start pb-4">
+                        <div class="text-right"><a href="/postulacion" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase text-xl absolute" role="button" aria-pressed="true">Postulate</a></div>                
+                    </div>
+                </div>
+            </div>
+            <div class="nav-item p-2 z-40">
+                {{-- <div class="text-left"><a href="/postulacion" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase absolute" role="button" aria-pressed="true">Escuela de Base</a></div> --}}
             </div>
             <div class="row">
                 <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">

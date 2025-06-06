@@ -7,9 +7,6 @@ use Ramsey\Uuid\Uuid;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('registro1x10ffms', function (Blueprint $table) {
@@ -27,10 +24,6 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('registro1x10ffms');

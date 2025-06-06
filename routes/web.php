@@ -15,6 +15,7 @@ use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Rtl;
 
 use App\Http\Livewire\Postulacion\Index as postulacion;
+use App\Http\Livewire\Campamento\Index as campamento;
 use App\Http\Livewire\Registro1x10ffm\Index as ffm;
 use App\Http\Livewire\Luchador\Index as registrolsb;
 use App\Http\Livewire\NBC\Index as registronbc;
@@ -39,6 +40,7 @@ Route::get('/logout', function() {Auth::logout(); return redirect('/login'); })-
 Route::get('/sign-up', SignUp::class)->name('sign-up');
 Route::get('/login', Login::class)->name('login');
 Route::get('/postulacion', postulacion::class)->name('postulacion');
+Route::get('/campamento', campamento::class)->name('campamento');
 
 Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-password');
 
