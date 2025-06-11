@@ -2433,6 +2433,7 @@ namespace App\Models {
      * @property mixed $parroquia_id
      * @property mixed $municipio_id
      * @property mixed $estado_id
+     * @property mixed $nivel_responsabilidad_id
      * @property mixed $responsabilidad_id
      * @property mixed $nivel_academico_id
      * @property mixed $genero_id
@@ -2483,6 +2484,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereGeneroId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereNivelAcademicoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereResponsabilidadId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereNivelResponsabilidadId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereEstadoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereMunicipioId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereParroquiaId($value)
@@ -4244,6 +4246,7 @@ namespace App\Models {
      * @property mixed $estado_id
      * @property mixed $nivel_academico_id
      * @property mixed $genero_id
+     * @property string|null $cargo
      * @property mixed $nivel_id
      * @property bool $cargo_popular
      * @property bool $pertenece_al_psuv
@@ -4279,6 +4282,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion wherePerteneceAlPsuv($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCargoPopular($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereNivelId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCargo($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereGeneroId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereNivelAcademicoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereEstadoId($value)

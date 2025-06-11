@@ -14,13 +14,14 @@ use App\Models\Avanzada;
 use App\Models\NivelAcademico;
 use App\Models\Responsabilidad;
 use App\Models\Formacion;
+use App\Models\Campamento;
 
 class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $modalLuchador, $modalPostulado, $modalFormacion, $verPostulado = false;
+    public $modalLuchador, $modalPostulado, $modalFormacion, $verPostulado, $modalCampamento = false;
     public $municipios, $municipio  = null; // Liste de Municipios
     public $estados, $estado = null; // Lista de estados
     public $parroquias, $parroquia  = null; // Lista de parroquias
@@ -37,7 +38,7 @@ class Index extends Component
     public $telefono = null; //Telefono
     
     public $search = "";
-    public $data = "postulados";
+    public $data = "campamento";
 
     public function updatingSearch()
     {
@@ -45,18 +46,14 @@ class Index extends Component
     }
     public function render()
     {
-        $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
-        ->where('estado_id', '<>', '25')
-        ->paginate(5);
-        $postulados = postulado::where('cedula', 'like', "%$this->search%")
-        ->where('estado_id', '=', auth()->user()->estado_id)
-        ->paginate(5);
-        $formacions = Formacion::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')	
-        ->paginate(5);
+        $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")->where('estado_id', '<>', '25')->paginate(5);
+        $postulados = postulado::where('cedula', 'like', "%$this->search%")->where('estado_id', '=', auth()->user()->estado_id)->paginate(5);
+        $formacions = Formacion::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')->paginate(5);
+        $campamento = Campamento::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')->paginate(5);
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->estados = Estado::all();
 
-        return view('livewire.formacion.index', ['lsbs'=>$lsbs, 'postulados'=>$postulados, 'formacions'=>$formacions]);
+        return view('livewire.formacion.index', ['lsbs'=>$lsbs, 'postulados'=>$postulados, 'formacions'=>$formacions, 'campamento'=>$campamento, 'campamentos'=>$campamento]);
     }
     public function ver($campo) 
     {

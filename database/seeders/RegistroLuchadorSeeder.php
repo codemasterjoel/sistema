@@ -32,6 +32,7 @@ class RegistroLuchadorSeeder extends Seeder
             'vocero' => false,
             'pertenece_al_psuv' => false,
             'cargo_popular' => false,
+            'nivel_responsabilidad_id' => '1'
         ]]);
     }
 }

@@ -120,14 +120,11 @@ class Index extends Component
         if (count($existelsb) > 0) //se encuentra registrado como jefe
         {
             session()->flash('yaregistrado', 'yaregistrado');
-            // $this->cerrarFormulario();
-            // $this->existelsb2 = $existelsb;
         } else 
         {
             $saime = Saime::where('cedula', '=', $this->cedula)->get();
             if (count($saime) > 0) {
                 $saime = $saime->first();
-                // dd($saime);
                 $this->nombre = $saime->nombre1." ".$saime->nombre2;
                 $this->apellido = $saime->apellido1." ".$saime->apellido2;
                 $this->generoId = $saime->genero_id;
@@ -175,28 +172,7 @@ class Index extends Component
     }
     public function guardar()
     {
-        $this->validate([
-            'nacionalidad' => 'required',
-            'cedula' => 'required|min:7|max:8',
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'fechaNacimiento' => 'required',
-            'generoId' => 'required|exists:generos,id',
-            'telefono' => 'required|size:15',
-            'nivelAcademicoId' => 'required',
-            'avanzadaId' => 'required',
-            'responsabilidadId' => 'required',
-            'estadoId' => 'required',
-            'municipioId' => 'required',
-            'parroquiaId' => 'required',
-            'correo' => 'required|email:rfc',
-            'direccion' => 'required',
-            'nivelId' => 'required',
-            'pertenece_al_psuv' => 'required',
-            'cargo' => 'required',
-            'vocero' => 'required',
-            'cargo_popular' => 'required',            
-        ]);
+
 
         if ($this->estatus == false) {
             $this->inactivo = Carbon::now()->toDateTimeString();

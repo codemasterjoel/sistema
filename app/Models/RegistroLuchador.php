@@ -47,6 +47,7 @@ class RegistroLuchador extends Model
         'cargo',
         'vocero',
         'cargo_popular',
+        'nivel_responsabilidad_id'
     ];
 
     public function estado()

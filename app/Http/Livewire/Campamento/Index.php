@@ -10,7 +10,7 @@ use App\Models\Parroquia;
 use App\Models\Genero;
 use App\Models\NivelAcademico;
 use App\Models\Nivel;
-use App\Models\postulacion;
+use App\Models\Campamento;
 
 use Ramsey\Uuid\Uuid;
 class Index extends Component
@@ -47,7 +47,7 @@ class Index extends Component
     {
         $this->validate([
             'nacionalidad' => 'required',
-            'cedula' => 'required|min:7|max:8|unique:postulacions,cedula',
+            'cedula' => 'required|min:7|max:8|unique:campamentos,cedula',
             'nombre' => 'required',
             'apellido' => 'required',
             'fechaNacimiento' => 'required',
@@ -59,14 +59,9 @@ class Index extends Component
             'parroquiaId' => 'required',
             'correo' => 'required|email:rfc',
             'direccion' => 'required',
-            'nivelId' => 'required',
-            'pertenece_al_psuv' => 'required',
-            'cargo' => 'required',
-            'vocero' => 'required',
-            'cargo_popular' => 'required',
         ]);
         
-        $lsb = postulacion::create([
+        $lsb = Campamento::create([
             'id' => Uuid::uuid4()->toString(),
             'cedula' => $this->cedula,
             'nombre' => $this->nombre,

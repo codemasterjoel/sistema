@@ -19,13 +19,14 @@ return new class extends Migration
             $table->date('fecha_nac');
             $table->string('telefono')->nullable();
             $table->string('correo');
-            $table->Integer('edad');
+            $table->Integer('edad')->nullable();
             $table->Integer('hijos')->default(0);
 
             $table->boolean('vocero')->default(false);
             $table->boolean('pertenece_al_psuv')->default(false);
             $table->boolean('cargo_popular')->default(false);
             $table->foreignId('nivel_id')->nullable()->references('id')->on('nivels')->nullOnDelete()->cascadeOnUpdate();
+            $table->string('cargo')->nullable();
 
             $table->foreignId('genero_id')->nullable()->references('id')->on('generos')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('nivel_academico_id')->nullable()->references('id')->on('nivel_academicos')->nullOnDelete()->cascadeOnUpdate();

@@ -84,7 +84,7 @@
                             </div>
                         </div>
 
-                        {{-- <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-4">
                             <div class="relative flex flex-wrap items-stretch pb-4">
                                 <span class="flex bg-cyan-400 font-bold text-white items-center rounded-l-lg border border-r-0 border-solid px-3 border-neutral-900">Fecha de Nacimiento</span>
                                 <input wire:model="fechaNacimiento" type="date" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 px-3 font-bold text-neutral-900 outline-2" />
@@ -99,31 +99,30 @@
                                 </select>
                                 @error('generoId')<div class="text-danger">{{ $message }}</div> @enderror
                             </div>
-                        </div> --}}
+                        </div>
 
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
-                                <div class="w-full rounded-lg">
-                                    <div class="flex">
-                                        <span class="bg-cyan-400 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Telefono</span>
-                                        <input wire:model="telefono" type="text" class="w-full pl-3 border border-solid rounded-r-lg font-bold outline-2 border-slate-900 text-slate-900" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <span class="bg-cyan-400 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold transition-colors">Telefono</span>
+                                            <input wire:model="telefono" type="text" class="w-full pl-2 border rounded-r-lg text-neutral-900 font-bold outline-2 border-cyan-900" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
+                                        </div>
+                                        @error('telefono')<div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
-                                    @error('telefono')<div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-
-                            <div class="flex items-center justify-center pb-4"> {{-- campo Avanzada --}}
-                                <div class="w-full rounded-lg">
-                                  <div class="flex">
-                                    <span class="bg-cyan-400 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Avanzada</span>
-                                    <select class="w-full rounded-r-lg border px-3 border-solid text-slate-900 font-bold border-slate-900 outline-2" wire:model="avanzadaId" required>
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Nivel Academico --}}
+                                    <span class="flex bg-cyan-400 font-bold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-900 px-3 py-[0.25rem] text-center">Avanzada</span>
+                                    <select wire:model="avanzadaId" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
                                         <option value="">Seleccione</option>
                                         @foreach( $avanzadas as $avanzada )
                                             <option value="{{ $avanzada->id }}">{{ $avanzada->nombre }}</option>
                                         @endforeach
                                     </select>
-                                  </div>
-                                  @error('avanzadaId')<div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('avanzadaId') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
@@ -314,7 +313,7 @@
                             <div class="w-full rounded-lg">
                                 <div class="flex">
                                     <span class="bg-cyan-400 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Correo</span>
-                                    <input wire:model="correo" type="email" class="w-full pl-3 border border-solid text-neutral-900 rounded-r-lg font-bold outline-2 border-slate-900" placeholder="usuario@correo.com" onkeyup="this.value = this.value.toUpperCase();"/>
+                                    <input wire:model="correo" type="email" class="w-full pl-3 border border-solid text-neutral-900 rounded-r-lg font-bold outline-2 border-slate-900" placeholder="usuario@correo.com" />
                                 </div>
                                 @error('correo') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>

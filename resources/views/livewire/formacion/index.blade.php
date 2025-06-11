@@ -3,9 +3,10 @@
         <div class="col-12">
             <div class="card mb-4 mx-4">
                 <div class="card-header pb-0">
-                    {{-- <a href="#" wire:click="ver('luchador')" class="btn bg-gradient-success active mb-0 text-white" role="button" aria-pressed="true">LUCHADORES</a>
+                    <a href="#" wire:click="ver('luchador')" class="btn bg-gradient-success active mb-0 text-white" role="button" aria-pressed="true">LUCHADORES</a>
                     <a href="#" wire:click="ver('postulados')" class="btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">POSTULADOS</a>
-                    <a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a> --}}
+                    <a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a>
+                    <a href="#" wire:click="ver('campamento')" class="btn bg-gradient-info active mb-0 text-white" role="button" aria-pressed="true">CAMPAMENTOS</a>
                     @if($modalLuchador)
                         @include('livewire.formacion.verlsb')
                     @endif
@@ -115,6 +116,58 @@
                                 <strong class="px-4 mt-8">No existen Resultados</strong>
                             </div>
                         @endif
+                    @elseif ($data == 'campamento')
+                        <div class="mt-4">
+                            <h3 class="text-2xl text-cyan-400 font-semibold text-center">LISTADO DE PERSONAS EN CAMPAMENTO</h3>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <input wire:model.live="search" type="text" placeholder="Filtrar por Cedula" class="w-30 px-4 py-2 border rounded-lg outline-2 border-solid border-neutral-900 text-neutral-900 font-bold">
+                        </div>
+                        @if ($campamentos->count())
+                            <div class="card-body px-0 pt-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-dark font-weight-bolder">#</th>
+                                                <th class="text-uppercase text-secondary text-dark font-weight-bolder ps-2">foto</th>
+                                                <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">nombre</th>
+                                                <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">estado</th>
+                                                <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">municipio</th>
+                                                <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">parroquia</th>
+                                                <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">estatus</th>
+                                                <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $indice =0; ?>
+                                            @foreach ($campamentos as $campamento)
+                                            <?php $indice += 1; ?>
+                                            <tr><td class="ps-4"><p class="font-weight-bold mb-0"><?php echo $indice; ?></p></td>
+                                                <td><div><img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3"></div></td>
+                                                <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->nombre}} {{$campamento->apellido}}</p></td>
+                                                <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->estado->nombre}}</p></td>
+                                                <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->municipio->nombre}}</p></td>
+                                                <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->parroquia->nombre}}</p></td>
+                                                <td class="text-center text-uppercase"><p class="font-weight-bold mb-0 {{$campamento->estatus ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$campamento->estatus ? 'activo' : 'inactivo'}}</p></td>
+                                                <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar formacion">
+                                                    <a wire:click="verLuchador('{{$campamento->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
+                                                    <a wire:click="verLuchador('{{$campamento->id}}')" rel="tooltip" title="Generar Ficha" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                {{-- {{$lsbs->links()}} --}}
+                            </div>
+                        @else
+                            <div class="card-dody px-4 pt-2 py-8 pb-2">
+                                <strong class="px-4 mt-8">No existen Resultados</strong>
+                            </div>
+                        @endif
                     @elseif ($data == 'luchador')
                         <div class="mt-4">
                             <h3 class="text-2xl text-cyan-400 font-semibold text-center">LISTADO DE LUCHADORES</h3>
@@ -152,6 +205,7 @@
                                                 <td class="text-center text-uppercase"><p class=" font-weight-bold mb-0 {{$lsb->estatus ? 'text-cyan-100 bg-cyan-500' : 'text-red-100 bg-red-500'}} rounded-lg">{{$lsb->estatus ? 'activo' : 'inactivo'}}</p></td>
                                                 <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar lsb">
                                                     <a wire:click="verLuchador('{{$lsb->id}}')" rel="tooltip" title="Generar Ficha" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
+                                                    <a wire:click="certificado('{{$lsb->id}}')" rel="tooltip" title="Generar Ficha" type="button" class="text-success font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
