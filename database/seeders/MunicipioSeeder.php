@@ -348,7 +348,8 @@ class MunicipioSeeder extends Seeder
             ['id' => '1508', 'nombre' => 'VILLALBA', 'municipio_id' => '1508', 'estado_id' => '15'],
             ['id' => '1509', 'nombre' => 'TUBORES', 'municipio_id' => '1509', 'estado_id' => '15'],
             ['id' => '1510', 'nombre' => 'ANTOLIN DEL CAMPO', 'municipio_id' => '1510', 'estado_id' => '15'],
-            ['id' => '1511', 'nombre' => 'GARCIA', 'municipio_id' => '1511', 'estado_id' => '15']
+            ['id' => '1511', 'nombre' => 'GARCIA', 'municipio_id' => '1511', 'estado_id' => '15'],
+            ['id' => '2601', 'nombre' => 'GUAYANA ESEQUIBA', 'municipio_id' => '2601', 'estado_id' => '26']
         ]);
     }
 }

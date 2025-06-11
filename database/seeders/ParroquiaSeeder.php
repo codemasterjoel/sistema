@@ -1154,7 +1154,8 @@ class ParroquiaSeeder extends Seeder
             ['id' => '10120', 'nombre' => 'SAN PEDRO', 'parroquia_id' => '10120', 'municipio_id' => '101'],
             ['id' => '10108', 'nombre' => 'SANTA ROSALIA', 'parroquia_id' => '10108', 'municipio_id' => '101'],
             ['id' => '10109', 'nombre' => 'SANTA TERESA', 'parroquia_id' => '10109', 'municipio_id' => '101'],
-            ['id' => '10110', 'nombre' => 'SUCRE', 'parroquia_id' => '10110', 'municipio_id' => '101']
+            ['id' => '10110', 'nombre' => 'SUCRE', 'parroquia_id' => '10110', 'municipio_id' => '101'],
+            ['id' => '260101', 'nombre' => 'GUAYANA ESEQUIBA', 'parroquia_id' => '260101', 'municipio_id' => '2601']
         ]);
     }
 }

@@ -38,7 +38,6 @@ class RegistroLuchador extends Model
         'municipio_id',
         'parroquia_id',
         'direccion',
-        'pais_id',
         'letra',
         'edad',
         'inactivo',

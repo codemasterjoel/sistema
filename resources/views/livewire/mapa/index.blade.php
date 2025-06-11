@@ -46,7 +46,7 @@
 
     /* --------------------------- Initialize Markers --------------------------- */
     function initMarkers() {
-        // console.log(<?php echo $initialMarkers ?>);
+        
         const initialMarkers = <?php echo json_encode($initialMarkers); ?>;
         console.log(initialMarkers);
 

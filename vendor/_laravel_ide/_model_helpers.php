@@ -296,11 +296,55 @@ namespace App\Models {
     /**
      * App\Models\Campamento
      *
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property mixed $parroquia_id
+     * @property mixed $municipio_id
+     * @property mixed $estado_id
+     * @property mixed $nivel_id
+     * @property mixed $nivel_academico_id
+     * @property mixed $genero_id
+     * @property string $direccion
+     * @property string $correo
+     * @property string|null $telefono
+     * @property string $fecha_nac
+     * @property string $apellido
+     * @property string $nombre
+     * @property string|null $cargo
+     * @property mixed $cedula
+     * @property bool $cargo_popular
+     * @property bool $pertenece_al_psuv
+     * @property bool $vocero
+     * @property bool $estatus
+     * @property string $letra
+     * @property string $id
      * @property-read \App\Models\Estado $estado
      * @property-read \App\Models\Genero $genero
      * @property-read \App\Models\Municipio $municipio
      * @property-read \App\Models\Parroquia $parroquia
      * @property-read \App\Models\NivelAcademico $nivelAcademico
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereLetra($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereEstatus($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereVocero($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento wherePerteneceAlPsuv($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereCargoPopular($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereCedula($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereCargo($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereNombre($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereApellido($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereFechaNac($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereTelefono($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereCorreo($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereDireccion($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereGeneroId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereNivelAcademicoId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereNivelId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereEstadoId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereMunicipioId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereParroquiaId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Campamento>|Campamento query()
@@ -2389,11 +2433,15 @@ namespace App\Models {
      * @property mixed $parroquia_id
      * @property mixed $municipio_id
      * @property mixed $estado_id
-     * @property string|null $pais_id
      * @property mixed $responsabilidad_id
      * @property mixed $nivel_academico_id
      * @property mixed $genero_id
      * @property mixed $avanzada_id
+     * @property mixed $nivel_id
+     * @property string|null $cargo
+     * @property bool $cargo_popular
+     * @property bool $pertenece_al_psuv
+     * @property bool $vocero
      * @property mixed $hijos
      * @property mixed $edad
      * @property string $correo
@@ -2426,11 +2474,15 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereCorreo($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereEdad($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereHijos($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereVocero($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador wherePerteneceAlPsuv($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereCargoPopular($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereCargo($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereNivelId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereAvanzadaId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereGeneroId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereNivelAcademicoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereResponsabilidadId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador wherePaisId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereEstadoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereMunicipioId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereParroquiaId($value)
@@ -4186,23 +4238,24 @@ namespace App\Models {
      * @property string|null $deleted_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
+     * @property string $direccion
      * @property mixed $parroquia_id
      * @property mixed $municipio_id
      * @property mixed $estado_id
-     * @property mixed $nivel_id
      * @property mixed $nivel_academico_id
      * @property mixed $genero_id
-     * @property string $direccion
+     * @property mixed $nivel_id
+     * @property bool $cargo_popular
+     * @property bool $pertenece_al_psuv
+     * @property bool $vocero
+     * @property mixed $hijos
+     * @property mixed $edad
      * @property string $correo
      * @property string|null $telefono
      * @property string $fecha_nac
      * @property string $apellido
      * @property string $nombre
-     * @property string|null $cargo
      * @property mixed $cedula
-     * @property bool|null $cargo_popular
-     * @property bool|null $pertenece_al_psuv
-     * @property bool|null $vocero
      * @property bool $estatus
      * @property string $letra
      * @property string $id
@@ -4214,23 +4267,24 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereLetra($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereEstatus($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereVocero($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion wherePerteneceAlPsuv($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCargoPopular($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCedula($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCargo($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereNombre($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereApellido($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereFechaNac($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereTelefono($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCorreo($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereDireccion($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereEdad($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereHijos($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereVocero($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion wherePerteneceAlPsuv($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCargoPopular($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereNivelId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereGeneroId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereNivelAcademicoId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereNivelId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereEstadoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereMunicipioId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereParroquiaId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereDireccion($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<postulacion>|postulacion whereDeletedAt($value)

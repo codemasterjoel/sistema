@@ -11,10 +11,10 @@ use App\Models\Parroquia;
 use App\Models\Genero;
 use App\Models\Avanzada;
 use App\Models\NivelAcademico;
+use App\Models\Nivel;
 use App\Models\Responsabilidad;
 use App\Models\Saime;
 use App\Mail\UserCreated;
-use App\Models\Pais;
 use Carbon\Carbon;
 
 use Ramsey\Uuid\Uuid;
@@ -28,25 +28,12 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $modal, $estado, $filtro = false;
-    public $paises      = null; // Lista de estados
-    public $estados     = null; // Lista de estados
-    public $municipios  = null; // Liste de Municipios
-    public $parroquias  = null; // Lista de parroquias
-    public $nivelesAcademicos = null; //Niveles Academicos
-    public $responsabilidades = null; //Responsabilidades
-    public $cedula, $nacionalidad = null; //Cedula
-    public $avanzadas = null; //Avanzadas
-    public $correo, $direccion = null; //Correo
-    public $fechaNacimiento = null; //Fecha Nacimiento
-    public $nombre, $apellido = null; //Nombres
-    public $generos = null; //Genero
-    public $estatus = null; //Estatus
-    public $telefono = null; //Telefono
-    public $edad = null; //edad calculada
-    public $inactivo = null; //Fecha de inactivo
-    public $id = null; //Id
+    public $estados, $municipios, $parroquias, $nivelesAcademicos, $niveles, $responsabilidades = null;
+    public $cedula, $nacionalidad, $avanzadas, $correo, $direccion, $fechaNacimiento, $nombre, $apellido = null;
+    public $generos, $pertenece_al_psuv, $cargo, $vocero, $cargo_popular = null;
+    public $estatus, $telefono, $edad, $inactivo, $id = null;
     public $search = "";
-    public $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId = null; //Id que recibo de los campos
+    public $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
 
     public function updatingSearch()
     {
@@ -59,10 +46,10 @@ class Index extends Component
         ->paginate(5);
         $this->estados = Estado::all();
         $this->nivelesAcademicos = NivelAcademico::all();
+        $this->niveles = Nivel::all();
         $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
         $this->avanzadas = Avanzada::all();
         $this->generos = Genero::all();
-        $this->paises = Pais::all();
 
         return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
     }
@@ -108,6 +95,11 @@ class Index extends Component
         $this->paisId = null;
         $this->nacionalidad = null;
         $this->edad = null;
+        $this->nivelId = null;
+        $this->pertenece_al_psuv = null;
+        $this->cargo = null;
+        $this->vocero = null;
+        $this->cargo_popular = null;
     }
     public function updatedEstadoId($id)
     {
@@ -151,6 +143,7 @@ class Index extends Component
         $lsb = RegistroLuchador::findOrFail($id);
 
         $this->id = $id;
+        $this->estatus =$lsb->estatus;
         $this->cedula = $lsb->cedula;
         $this->nombre = $lsb->nombre;
         $this->apellido = $lsb->apellido;
@@ -167,9 +160,14 @@ class Index extends Component
         $this->parroquias = Parroquia::where('municipio_id', $lsb->municipio_id)->get();
         $this->correo = $lsb->correo;
         $this->direccion = $lsb->direccion;
-        $this->paisId = $lsb->pais_id;
         $this->nacionalidad = $lsb->letra;
         $this->edad = $lsb->edad;
+        $this->nivelId = $lsb->nivel_id;
+        $this->pertenece_al_psuv = $lsb->pertenece_al_psuv;
+        $this->cargo = $lsb->cargo;
+        $this->vocero = $lsb->vocero;
+        $this->cargo_popular = $lsb->cargo_popular;
+        
 
         session()->flash('success', 'success');
 
@@ -179,7 +177,6 @@ class Index extends Component
     {
         $this->validate([
             'nacionalidad' => 'required',
-            'paisId' => 'required',
             'cedula' => 'required|min:7|max:8',
             'nombre' => 'required',
             'apellido' => 'required',
@@ -193,7 +190,12 @@ class Index extends Component
             'municipioId' => 'required',
             'parroquiaId' => 'required',
             'correo' => 'required|email:rfc',
-            'direccion' => 'required'
+            'direccion' => 'required',
+            'nivelId' => 'required',
+            'pertenece_al_psuv' => 'required',
+            'cargo' => 'required',
+            'vocero' => 'required',
+            'cargo_popular' => 'required',            
         ]);
 
         if ($this->estatus == false) {
@@ -208,7 +210,6 @@ class Index extends Component
         $lsb = RegistroLuchador::updateOrCreate(['id' => $this->id],
             [
             'letra' => $this->nacionalidad,
-            'pais_id' => $this->paisId,
             'estatus' => $this->estatus,
             'cedula' => $this->cedula,
             'nombre' => $this->nombre,
@@ -225,7 +226,12 @@ class Index extends Component
             'parroquia_id' => $this->parroquiaId,
             'direccion' => $this->direccion,
             'edad' => $this->edad,
-            'inactivo' => $this->inactivo
+            'inactivo' => $this->inactivo,
+            'nivel_id' => $this->nivelId,
+            'pertenece_al_psuv' => $this->pertenece_al_psuv,
+            'cargo' => $this->cargo,
+            'vocero' => $this->vocero,
+            'cargo_popular' => $this->cargo_popular,
         ]);
          
         session()->flash('success', 'success');
@@ -256,14 +262,6 @@ class Index extends Component
         $lsbs = RegistroLuchador::find($id);
 
         return view ('livewire.reportes.lsb', ['lsb'=>$lsbs]);
-    }
-    public function updatedNacionalidad($id)
-    {
-        if ($id == 'V') {
-            $this->paisId = 'VE';
-        }else{
-            $this->paisId = null;
-        }
     }
     public function carnet($id)
     {
