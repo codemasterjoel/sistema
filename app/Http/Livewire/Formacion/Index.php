@@ -15,6 +15,8 @@ use App\Models\NivelAcademico;
 use App\Models\Responsabilidad;
 use App\Models\Formacion;
 use App\Models\Campamento;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class Index extends Component
 {
@@ -22,21 +24,8 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $modalLuchador, $modalPostulado, $modalFormacion, $verPostulado, $modalCampamento = false;
-    public $municipios, $municipio  = null; // Liste de Municipios
-    public $estados, $estado = null; // Lista de estados
-    public $parroquias, $parroquia  = null; // Lista de parroquias
-    public $direccion = null; // direccion
-    public $nivelesAcademicos, $nivelAcademico = null; //Niveles Academicos
-    public $responsabilidades, $responsabilidad = null; //Responsabilidades
-    public $cedula = null; //Cedula
-    public $avanzadas, $avanzada = null; //Avanzadas
-    public $correo = null; //Correo
-    public $fechaNacimiento = null; //Fecha Nacimiento
-    public $nombreCompleto = null; //Nombres
-    public $generos, $generoId = null; //Genero
-    public $estatus = null; //Estatus
-    public $telefono = null; //Telefono
-    
+    public $municipios, $municipio, $estados, $estado, $parroquias, $parroquia, $direccion, $nivelesAcademicos, $nivelAcademico, $responsabilidades, $responsabilidad, $cedula, $avanzadas, $avanzada, $correo, $fechaNacimiento = null; //Fecha Nacimiento
+    public $nombreCompleto, $generos, $generoId, $estatus, $telefono = null; //Telefono
     public $search = "";
     public $data = "campamento";
 
@@ -142,6 +131,15 @@ class Index extends Component
     }
     public function certificado($id)
     {
-        
+        $estudiante = Campamento::find($id);
+
+        // return view('livewire.reportes.certificado', ['estudiante' => $estudiante]);
+        $pdf = Pdf::loadView('livewire.reportes.certificado', ['estudiante'=>$estudiante]);
+        set_time_limit(0);
+        ini_set("memory_limit",-1);
+        ini_set('max_execution_time', 0);
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+        }, 'certificado.pdf');
     }
 }
