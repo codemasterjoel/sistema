@@ -312,8 +312,8 @@ namespace App\Models {
      * @property string $nombre
      * @property string|null $cargo
      * @property mixed $cedula
-     * @property bool $cargo_popular
-     * @property bool $pertenece_al_psuv
+     * @property bool|null $cargo_popular
+     * @property bool|null $pertenece_al_psuv
      * @property bool $vocero
      * @property bool $estatus
      * @property string $letra

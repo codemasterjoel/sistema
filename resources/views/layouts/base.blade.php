@@ -25,12 +25,12 @@
     <script src="{{asset('js/leaflet-bing-layer.js')}}" rel="stylesheet"></script>
     <!-- Font Awesome Icons
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
-    <script src="{{ asset('js/Chart.js')}}"></script>
     <script src="{{ asset('js/chart.min.js')}}"></script>
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1" rel="stylesheet" />
     @livewireStyles
+    @laravelPWA
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
