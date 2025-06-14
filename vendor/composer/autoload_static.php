@@ -142,6 +142,7 @@ class ComposerStaticInitff47defbbe3e176f3a1a1ebec589f292
             'Laravel\\Sail\\' => 13,
             'Laravel\\Prompts\\' => 16,
             'LaravelPWA\\' => 11,
+            'Ladumor\\LaravelPwa\\' => 19,
         ),
         'I' => 
         array (
@@ -485,6 +486,10 @@ class ComposerStaticInitff47defbbe3e176f3a1a1ebec589f292
         'LaravelPWA\\' => 
         array (
             0 => __DIR__ . '/..' . '/silviolleite/laravelpwa',
+        ),
+        'Ladumor\\LaravelPwa\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ladumor/laravel-pwa/src',
         ),
         'Illuminate\\Support\\' => 
         array (
@@ -3231,6 +3236,9 @@ class ComposerStaticInitff47defbbe3e176f3a1a1ebec589f292
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Ladumor\\LaravelPwa\\LaravelPwa' => __DIR__ . '/..' . '/ladumor/laravel-pwa/src/LaravelPwa.php',
+        'Ladumor\\LaravelPwa\\PWAServiceProvider' => __DIR__ . '/..' . '/ladumor/laravel-pwa/src/PWAServiceProvider.php',
+        'Ladumor\\LaravelPwa\\commands\\PublishPWA' => __DIR__ . '/..' . '/ladumor/laravel-pwa/src/commands/PublishPWA.php',
         'LaravelPWA\\Http\\Controllers\\LaravelPWAController' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Http/Controllers/LaravelPWAController.php',
         'LaravelPWA\\Providers\\LaravelPWAServiceProvider' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Providers/LaravelPWAServiceProvider.php',
         'LaravelPWA\\Providers\\RouteServiceProvider' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Providers/RouteServiceProvider.php',
