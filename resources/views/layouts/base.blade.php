@@ -44,7 +44,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="PWA">
-    <link rel="apple-touch-icon" href="/images/icons/icon-512x512.png">
+    <link rel="apple-touch-icon" href="{{ asset('images/icons/icon-512x512.png') }}">
 
     <link href="/images/icons/splash-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="/images/icons/splash-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
@@ -95,7 +95,7 @@
     <script type="text/javascript">
         // Initialize the service worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/serviceworker.js', {
+            navigator.serviceWorker.register('/sw.js', {
                 scope: '.'
             }).then(function (registration) {
                 // Registration was successful

@@ -169,6 +169,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Ladumor\LaravelPwa\PWAServiceProvider::class,
 
         /*
          * Package Service Providers...
