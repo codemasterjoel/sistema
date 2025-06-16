@@ -49,16 +49,15 @@
                                 </div>
                             </div>
                             <div class="col-xl-4 col-sm-12 mb-xl-0">
-                                <label class="relative inline-flex cursor-pointer items-center"> {{-- campo activo --}}
-                                    <input type="checkbox" class="peer sr-only" wire:model.live="estatus" />
-                                    <div class=" peer flex flex-row-reverse h-8  mr-1 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-16 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
-                                        <span>Activo</span>
-                                        <span>Inactivo</span>
-                                    </div>
+                                <label class="relative inline-flex cursor-pointer items-center">
+                                    @if ($estatus == 1)
+                                        <input wire:click="cambiarEstatus()" type="button" value="Activo" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                    @else
+                                        <input wire:click="cambiarEstatus()" type="button" value="Inactivo" class="w-32 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                    @endif
                                 </label>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
@@ -192,12 +191,13 @@
                                 <div class="flex items-container justify-center"> {{-- campo Direccion --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
-                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="pertenece_al_psuv" />
-                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
-                                                  <span>SI</span>
-                                                  <span>NO</span>
-                                              </div><h5 class="p-2">¿Pertenece al PSUV/JPSUV?</h5>
+                                            <label class="relative inline-flex cursor-pointer items-center">
+                                                @if ($pertenece_al_psuv)
+                                                    <input wire:click="pertenecePSUV()" type="button" value="SI" class=" w-12 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @else
+                                                    <input wire:click="pertenecePSUV()" type="button" value="NO" class=" w-12 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @endif
+                                                <h5 class="p-2">¿Pertenece al PSUV/JPSUV?</h5>
                                             </label>
                                         </div>
                                     </div>
@@ -227,12 +227,13 @@
                                 <div class="flex items-container justify-center"> {{-- campo Direccion --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
-                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="vocero" />
-                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
-                                                  <span>SI</span>
-                                                  <span>NO</span>
-                                              </div><h5 class="p-2">¿Es Vocero del Consejo Comunal?</h5>
+                                            <label class="relative inline-flex cursor-pointer items-center">
+                                                @if ($vocero)
+                                                    <input wire:click="esVocero()" type="button" value="SI" class=" w-12 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @else
+                                                    <input wire:click="esVocero()" type="button" value="NO" class=" w-12 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @endif
+                                                <h5 class="p-2">¿Es Vocero del Consejo Comunal?</h5>
                                             </label>
                                         </div>
                                     </div>
@@ -245,12 +246,13 @@
                                 <div class="flex items-container justify-center"> {{-- campo Direccion --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
-                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="cargo_popular" />
-                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
-                                                  <span>SI</span>
-                                                  <span>NO</span>
-                                              </div><h5 class="p-2">¿Cuenta con un Cargo de elección popular?</h5>
+                                            <label class="relative inline-flex cursor-pointer items-center">
+                                                @if ($cargo_popular)
+                                                    <input wire:click="cambiarCargo()" type="button" value="SI" class=" w-12 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @else
+                                                    <input wire:click="cambiarCargo()" type="button" value="NO" class=" w-12 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @endif
+                                                <h5 class="p-2">¿Cuenta con un Cargo de elección popular?</h5>
                                             </label>
                                         </div>
                                     </div>

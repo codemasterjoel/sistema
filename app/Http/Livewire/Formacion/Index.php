@@ -26,7 +26,7 @@ class Index extends Component
 
     public $modalLuchador, $modalPostulado, $modalFormacion, $verPostulado, $modalCampamento = false;
     public $municipios, $municipioId, $estados, $estadoId, $parroquias, $parroquiaId, $nacionalidad, $direccion, $nivelesAcademicos, $niveles, $nivelAcademicoId, $responsabilidades, $responsabilidad, $cedula, $avanzadas, $avanzada, $correo, $fechaNacimiento = null; //Fecha Nacimiento
-    public $nombreCompleto, $nombre, $apellido, $generos, $generoId, $estatus, $telefono, $vocero, $pertenece_al_psuv, $cargo_popular, $cargo, $nivelId= null;
+    public $nombreCompleto, $nombre, $apellido, $generos, $generoId, $estatus, $telefono, $vocero, $pertenece_al_psuv, $cargo_popular, $cargo, $nivelId, $idCampamento= null;
     public $search = "";
     public $data = "campamento";
 
@@ -144,7 +144,7 @@ class Index extends Component
     {
         $estudiante = Campamento::findOrFail($id);
 
-        $this->id = $id;
+        $this->idCampamento = $id;
         $this->nacionalidad = $estudiante->letra;
         $this->nombre = $estudiante->nombre;
         $this->estatus = $estudiante->estatus;
@@ -169,13 +169,13 @@ class Index extends Component
 
         $this->modalCampamento = true;
     }
-    public function actualizarEstudiante($id)
+    public function actualizarEstudiante()
     {
         $this->validate([
             'nacionalidad' => 'required',
             'nombre' => 'required',
             'apellido' => 'required',
-            'cedula' => 'required|unique:campamentos,cedula,'.$this->id,
+            'cedula' => 'required|unique:campamentos,cedula,'.$this->idCampamento,
             'fechaNacimiento' => 'required|date',
             'telefono' => 'required',
             'correo' => 'nullable|email',
@@ -187,8 +187,9 @@ class Index extends Component
             'parroquiaId' => 'required|exists:parroquias,id',
         ]);
 
-        $estudiante = Campamento::findOrFail($this->id);
-        $estudiante = RegistroLuchador::updateOrCreate(['id' => $this->id],
+        
+
+        $estudiante = Campamento::updateOrCreate(['id' => $this->idCampamento],
             [
                 'letra' => $this->nacionalidad,
                 'nombre' => $this->nombre,
@@ -203,10 +204,51 @@ class Index extends Component
                 'estado_id' => $this->estadoId,
                 'municipio_id' => $this->municipioId,
                 'parroquia_id' => $this->parroquiaId,
+                'nivel_id' => $this->nivelId,
+                'pertenece_al_psuv' => $this->pertenece_al_psuv,
+                'cargo' => $this->cargo,
+                'vocero' => $this->vocero,
+                'cargo_popular' => $this->cargo_popular,
             ]);
 
-
-        session()->flash('message', __('Estudiante actualizado correctamente.'));
-        $this->modalCampamento = false;
+            $this->modalCampamento = false;
+            session()->flash('message', __('Estudiante actualizado correctamente.'));
+    }
+    public function pertenecePSUV()
+    {
+        if ($this->pertenece_al_psuv) {
+            $this->pertenece_al_psuv = false;
+            $this->nivelId = null;
+        }else
+        {
+            $this->pertenece_al_psuv = true;
+        }
+    }
+    public function esVocero()
+    {
+        if ($this->vocero) {
+            $this->vocero = false;
+        } else {
+            $this->vocero = true;
+        }
+    }
+    public function cambiarCargo()
+    {
+        if ($this->cargo_popular) {
+            $this->cargo_popular = false;
+            $this->cargo = null;
+        }else
+        {
+            $this->cargo_popular = true;
+        }
+    }
+    public function cambiarEstatus()
+    {
+        if ($this->estatus) {
+            $this->estatus = false;
+        }else
+        {
+            $this->estatus = true;
+        }
     }
 }
