@@ -88,6 +88,8 @@ class Index extends Component
         $this->modalLuchador = false;
         $this->modalFormacion  = false;
         $this->modalCampamento  = false;
+
+        $this->limpiarCampos();        
     }
     public function verPostulacion($id)
     {
@@ -250,5 +252,39 @@ class Index extends Component
         {
             $this->estatus = true;
         }
+    }
+    public function limpiarCampos()
+    {
+        $this->id = null;
+        $this->idCampamento = null;
+        $this->nacionalidad = null;
+        $this->nombre = null;
+        $this->apellido = null;
+        $this->cedula = null;
+        $this->fechaNacimiento = null;
+        $this->telefono = null;
+        $this->correo = null;
+        $this->direccion = null;
+        $this->generoId = null;
+        $this->nivelAcademicoId = null;
+        $this->estadoId = null;
+        $this->municipioId = null;
+        $this->parroquiaId = null;
+        $this->nivelId = null;
+        $this->pertenece_al_psuv = null;
+        $this->cargo = null;
+        $this->vocero = null;
+        $this->cargo_popular = null;
+        $this->estatus = null;
+        $this->nombreCompleto = null;
+        $this->municipios = null;
+        $this->parroquias = null;
+        $this->avanzada = null;
+        $this->genero = null;
+        $this->nivelAcademico = null;
+        $this->responsabilidad = null;
+        $this->estado = null;
+        $this->municipio = null;
+        $this->parroquia = null;
     }
 }
