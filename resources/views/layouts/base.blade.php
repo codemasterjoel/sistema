@@ -60,7 +60,7 @@
     <!-- Tile for Win8 -->
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/icons/icon-512x512.png">
-    @laravelPWA
+    {{-- @laravelPWA --}}
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
