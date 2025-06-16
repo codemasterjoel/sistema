@@ -172,15 +172,12 @@ class Index extends Component
     }
     public function guardar()
     {
-
-
         if ($this->estatus == false) {
             $this->inactivo = Carbon::now()->toDateTimeString();
         }else
         {
             $this->inactivo = null;
         }
-
         $this->edad = Carbon::parse($this->fechaNacimiento)->age;
 
         $lsb = RegistroLuchador::updateOrCreate(['id' => $this->id],

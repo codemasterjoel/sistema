@@ -13,6 +13,12 @@
                     @if($modalPostulado)
                         @include('livewire.formacion.verpostulado')
                     @endif
+                    @if($modalCampamento)
+                        @include('livewire.formacion.vercampamento')
+                    @endif
+                    @if ($modalFormacion)
+                        @include('livewire.formacion.verlsb')
+                    @endif
 
                     @if ($data == 'postulados')
                         <div class="mt-4">
@@ -99,7 +105,7 @@
                                                 <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$formacion->parroquia->nombre}}</p></td>
                                                 <td class="text-center text-uppercase"><p class="font-weight-bold mb-0 {{$formacion->estatus ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$formacion->estatus ? 'activo' : 'inactivo'}}</p></td>
                                                 <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar formacion">
-                                                    <a wire:click="verLuchador('{{$formacion->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
+                                                    <a wire:click="verFormacion('{{$formacion->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
                                                     <a wire:click="verLuchador('{{$formacion->id}}')" rel="tooltip" title="Generar Ficha" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
                                                 </td>
                                             </tr>
@@ -151,7 +157,7 @@
                                                 <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->parroquia->nombre}}</p></td>
                                                 <td class="text-center text-uppercase"><p class="font-weight-bold mb-0 {{$campamento->estatus ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$campamento->estatus ? 'activo' : 'inactivo'}}</p></td>
                                                 <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar formacion">
-                                                    <a wire:click="verLuchador('{{$campamento->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
+                                                    <a wire:click="editarEstudiante('{{$campamento->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
                                                     <a wire:click="certificado('{{$campamento->id}}')" rel="tooltip" title="CERTIFICADO" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
                                                 </td>
                                             </tr>

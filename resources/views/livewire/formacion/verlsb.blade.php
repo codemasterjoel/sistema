@@ -122,7 +122,7 @@
                         </div>
                         <div class="px-4 py-3 sm:px-6 sm:flex">
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModalLuchador()">SALIR</button>
+                                <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModal()">SALIR</button>
                             </span>
                         </div>
                     </form>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Formacion;
 
+use App\Models\Nivel;
 use Livewire\Component;
 use App\Models\RegistroLuchador;
 use Livewire\WithPagination;
@@ -24,8 +25,8 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $modalLuchador, $modalPostulado, $modalFormacion, $verPostulado, $modalCampamento = false;
-    public $municipios, $municipio, $estados, $estado, $parroquias, $parroquia, $direccion, $nivelesAcademicos, $nivelAcademico, $responsabilidades, $responsabilidad, $cedula, $avanzadas, $avanzada, $correo, $fechaNacimiento = null; //Fecha Nacimiento
-    public $nombreCompleto, $generos, $generoId, $estatus, $telefono = null; //Telefono
+    public $municipios, $municipioId, $estados, $estadoId, $parroquias, $parroquiaId, $nacionalidad, $direccion, $nivelesAcademicos, $niveles, $nivelAcademicoId, $responsabilidades, $responsabilidad, $cedula, $avanzadas, $avanzada, $correo, $fechaNacimiento = null; //Fecha Nacimiento
+    public $nombreCompleto, $nombre, $apellido, $generos, $generoId, $estatus, $telefono, $vocero, $pertenece_al_psuv, $cargo_popular, $cargo, $nivelId= null;
     public $search = "";
     public $data = "campamento";
 
@@ -36,11 +37,13 @@ class Index extends Component
     public function render()
     {
         $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")->where('estado_id', '<>', '25')->paginate(5);
-        $postulados = postulado::where('cedula', 'like', "%$this->search%")->where('estado_id', '=', auth()->user()->estado_id)->paginate(5);
+        $postulados = postulado::where('cedula', 'like', "%$this->search%")->paginate(5);
+        // $postulados = postulado::where('cedula', 'like', "%$this->search%")->where('estado_id', '=', auth()->user()->estado_id)->paginate(5);
         $formacions = Formacion::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')->paginate(5);
         $campamento = Campamento::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')->paginate(5);
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->estados = Estado::all();
+        $this->niveles = Nivel::all();
 
         return view('livewire.formacion.index', ['lsbs'=>$lsbs, 'postulados'=>$postulados, 'formacions'=>$formacions, 'campamento'=>$campamento, 'campamentos'=>$campamento]);
     }
@@ -79,9 +82,12 @@ class Index extends Component
         $this->modalLuchador = true;
 
     }
-    public function cerrarModalLuchador() 
+    public function cerrarModal() 
     {
+        $this->modalPostulado =  false;
         $this->modalLuchador = false;
+        $this->modalFormacion  = false;
+        $this->modalCampamento  = false;
     }
     public function verPostulacion($id)
     {
@@ -102,13 +108,9 @@ class Index extends Component
 
         $this->modalPostulado = true;
     }
-    public function cerrarModalPostulado() 
-    {
-        $this->modalPostulado = false;
-    }
     public function verFormacion($id)
     {
-        $postulado = postulado::findOrFail($id);
+        $postulado = Formacion::findOrFail($id);
 
         $this->id = $id;
         $this->cedula = $postulado->cedula;
@@ -125,10 +127,6 @@ class Index extends Component
 
         $this->modalFormacion = true;
     }
-    public function cerrarModalFormacion() 
-    {
-        $this->modalFormacion = false;
-    }
     public function certificado($id)
     {
         $estudiante = Campamento::find($id);
@@ -141,5 +139,74 @@ class Index extends Component
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();
         }, 'certificado.pdf');
+    }
+    public function editarEstudiante($id)
+    {
+        $estudiante = Campamento::findOrFail($id);
+
+        $this->id = $id;
+        $this->nacionalidad = $estudiante->letra;
+        $this->nombre = $estudiante->nombre;
+        $this->estatus = $estudiante->estatus;
+        $this->vocero = $estudiante->vocero;
+        $this->pertenece_al_psuv = $estudiante->pertenece_al_psuv;
+        $this->cargo_popular = $estudiante->cargo_popular;
+        $this->cargo = $estudiante->cargo;
+        $this->nivelId = $estudiante->nivel_id;
+        $this->cedula = $estudiante->cedula;
+        $this->apellido = $estudiante->apellido;
+        $this->fechaNacimiento = $estudiante->fecha_nac;
+        $this->telefono = $estudiante->telefono;
+        $this->correo = $estudiante->correo;
+        $this->direccion = $estudiante->direccion;
+        $this->generoId = $estudiante->genero_id;
+        $this->nivelAcademicoId = $estudiante->nivel_academico_id;
+        $this->estadoId = $estudiante->estado_id;
+        $this->municipios = Municipio::where('estado_id', $estudiante->estado_id)->get();
+        $this->municipioId = $estudiante->municipio_id;
+        $this->parroquias = Parroquia::where('municipio_id', $estudiante->municipio_id)->get();
+        $this->parroquiaId = $estudiante->parroquia_id;
+
+        $this->modalCampamento = true;
+    }
+    public function actualizarEstudiante($id)
+    {
+        $this->validate([
+            'nacionalidad' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'cedula' => 'required|unique:campamentos,cedula,'.$this->id,
+            'fechaNacimiento' => 'required|date',
+            'telefono' => 'required',
+            'correo' => 'nullable|email',
+            'direccion' => 'nullable|string|max:255',
+            'generoId' => 'required|exists:generos,id',
+            'nivelAcademicoId' => 'required|exists:nivel_academicos,id',
+            'estadoId' => 'required|exists:estados,id',
+            'municipioId' => 'required|exists:municipios,id',
+            'parroquiaId' => 'required|exists:parroquias,id',
+        ]);
+
+        $estudiante = Campamento::findOrFail($this->id);
+        $estudiante = RegistroLuchador::updateOrCreate(['id' => $this->id],
+            [
+                'letra' => $this->nacionalidad,
+                'nombre' => $this->nombre,
+                'apellido' => $this->apellido,
+                'cedula' => $this->cedula,
+                'fecha_nac' => Carbon::parse($this->fechaNacimiento),
+                'telefono' => $this->telefono,
+                'correo' => $this->correo,
+                'direccion' => $this->direccion,
+                'genero_id' => $this->generoId,
+                'nivel_academico_id' => $this->nivelAcademicoId,
+                'estado_id' => $this->estadoId,
+                'municipio_id' => $this->municipioId,
+                'parroquia_id' => $this->parroquiaId,
+            ]);
+
+
+        session()->flash('message', __('Estudiante actualizado correctamente.'));
+        $this->modalCampamento = false;
     }
 }

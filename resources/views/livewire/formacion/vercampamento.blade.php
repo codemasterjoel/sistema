@@ -1,24 +1,33 @@
 <div class="fixed z-50 inset-0 overflow-y-auto ease-out duration-400">
-    <div class="flex justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0 min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1140px]">
+    <div class="flex justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0 min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1140px]">
         <div class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
+        @if(session()->has('yaregistrado')== 'yaregistrado')
+            @include('livewire.components.yaregistrado')
+        @endif
+        @if(session()->has('noencontrada')== 'noencontrada')
+            @include('livewire.components.noencontrada')
+        @endif
+        @if(session()->has('noexiste')== 'success')
+            @include('livewire.components.noexiste')
+        @endif
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">    
-            <div class="min-h-screen flex justify-center">
+            <div class="min-h-screen flex items-center justify-center">
                 <div class="p-4 w-full bg-white rounded-lg">
-                    <div class="flex justify-center">
+                    <div class="flex items-center justify-center">
                         <img src="{{asset('img/logo.svg')}}" class="w-52">
                     </div>
-                    <h3 class="text-2xl text-cyan-400 font-bold text-center mt-2 mb-4">CAMPAMENTO ESCUELA DE BASE ROBINSONIANA</h3>
+                    <h3 class="text-2xl text-cyan-400 font-bold text-center">REGISTRAR NUEVO ESTUDIANTE</h3>
                     <form>
-                        <div class="row">
+                       <div class="row">
                             <div class="col-xl-4 col-sm-12 mb-xl-0">
                                 <div class="flex items-center justify-center pb-4"> {{-- campo cedula --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
                                             <span class="flex bg-cyan-900 text-white items-center font-bold whitespace-nowrap rounded-l-lg border-r-0 border-solid px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nacionalidad</span>
-                                            <select wire:model.live="nacionalidad" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 outline-2 transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
+                                            <select wire:model="nacionalidad" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 outline-2 transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
                                                 <option value="">Seleccione</option>
                                                 <option value="V">V</option>
                                                 <option value="E">E</option>
@@ -39,6 +48,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xl-4 col-sm-12 mb-xl-0">
+                                <label class="relative inline-flex cursor-pointer items-center"> {{-- campo activo --}}
+                                    <input type="checkbox" class="peer sr-only" wire:model.live="estatus" />
+                                    <div class=" peer flex flex-row-reverse h-8  mr-1 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-16 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                        <span>Activo</span>
+                                        <span>Inactivo</span>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -47,7 +65,7 @@
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
                                             <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold transition-colors">Nombre</span>
-                                            <input wire:model="nombre" type="text" class="w-full pl-2 text-neutral-900 border rounded-r-lg font-bold outline-2 border-cyan-900" onkeyup="this.value = this.value.toUpperCase();"/>
+                                            <input wire:model="nombre" type="text" class="uppercase w-full pl-2 text-neutral-900 border rounded-r-lg font-bold outline-2 border-cyan-900" onkeyup="this.value = this.value.toUpperCase();"/>
                                         </div>
                                         @error('nombre')<div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
@@ -58,7 +76,7 @@
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
                                             <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold transition-colors">Apellido</span>
-                                            <input wire:model="apellido" type="text" class="w-full pl-2 border rounded-r-lg text-neutral-900 font-bold outline-2 border-cyan-900" onkeyup="this.value = this.value.toUpperCase();"/>
+                                            <input wire:model="apellido" type="text" class="uppercase w-full pl-2 border rounded-r-lg text-neutral-900 font-bold outline-2 border-cyan-900" onkeyup="this.value = this.value.toUpperCase();"/>
                                         </div>
                                         @error('apellido')<div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
@@ -262,7 +280,7 @@
                             <div class="w-full rounded-lg">
                               <div class="flex">
                                 <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Dirección</span>
-                                <input wire:model="direccion" type="text" class="w-full pl-2 border text-neutral-900 border-solid rounded-r-lg font-bold outline-2 border-slate-900" onkeyup="this.value = this.value.toUpperCase();"/>
+                                <input wire:model="direccion" type="text" class="uppercase w-full pl-2 border text-neutral-900 border-solid rounded-r-lg font-bold outline-2 border-slate-900" onkeyup="this.value = this.value.toUpperCase();"/>
                               </div>
                               @error('direccion') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
@@ -278,13 +296,12 @@
                             </div>
                         </div>
 
-                        <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <div class="px-4 py-3 sm:px-6 sm:flex">
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-
-                                <a href="{{route('login')}}" class="btn w-32 bg-gradient-to-r from-red-400 to-red-600 text-white font-bold py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">SALIR</a>
+                                <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block mb-2" wire:click.prevent="actualizarEstudiante()" >GUARDAR</button>
                             </span>
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>
+                                <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block mb-2" wire:click="cerrarModal()">SALIR</button>
                             </span>
                         </div>
                     </form>

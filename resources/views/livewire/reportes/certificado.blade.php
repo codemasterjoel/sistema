@@ -9,7 +9,7 @@
 <body>
     <table style="width: 100%; border: 0px;">
         <tr>
-            <td style="text-align: left; width: 33%"><img src="img/logo.svg" width="100"></td>
+            <td style="text-align: left; width: 33%"></td>
             <td style="text-align: right; width: 64%"><?php echo date('d/m/Y'); ?></td>
         </tr>
     </table>
