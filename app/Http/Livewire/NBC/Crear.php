@@ -159,7 +159,7 @@ class Crear extends Component
     }
     public function guardar()
     {
-        $lsb = NBC::updateOrCreate(['id' => $this->id],
+        $nbc = NBC::updateOrCreate(['id' => $this->id],
             [
             'nombre' => $this->NombreNBC,
             'codigo' => $this->parroquiaId.random_int('1000', '9999'),
@@ -184,7 +184,7 @@ class Crear extends Component
          session()->flash('success', 'success');
 
          
-         return redirect('nbc');
+         return redirect('nbc/..');
     }
     public function borrar($id)
     {

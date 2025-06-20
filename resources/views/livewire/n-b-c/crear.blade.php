@@ -11,14 +11,14 @@
                   <h3 class=" mt-4 text-2xl text-cyan-400 font-bold text-center">REGISTRAR NUEVO NUCLEO DE BASE COMUNITARIO</h3>
                   <form>
                       <div class=" flex items-stretch pt-4"> {{-- campo Nombre del NBC --}}
-                          <span class="flex bg-cyan-900 font-bold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-900 px-3 py-[0.25rem] text-center">Nombre del NBC</span>
+                          <span class="flex bg-cyan-400 font-bold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-900 px-3 py-[0.25rem] text-center">Nombre del NBC</span>
                           <input wire:model="NombreNBC" type="text" class="w-full flex-auto relative pl-3 border border-solid rounded-r-lg font-bold text-neutral-900 text-uppercase outline-2 border-neutral-900" />
                       </div>
                       <div class="grid grid-cols-3 gap-4 pt-4">
                           <div class="flex items-center justify-center"> {{-- campo estado --}}
                               <div class="w-full rounded-lg">
                                 <div class="flex">
-                                    <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Estado</span>
+                                    <span class="bg-cyan-400 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Estado</span>
                                     <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-solid border-neutral-900 outline-2 font-bold" wire:model.live="estadoId" required>
                                         <option value="">Seleccione</option>
                                         @foreach( $estados as $estado )
@@ -33,7 +33,7 @@
                               <div class="flex items-center justify-center">
                                   <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
-                                      <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Municipio</span>
+                                      <span class="bg-cyan-400 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Municipio</span>
                                       <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-solid border-neutral-900 outline-2 font-bold" wire:model.live="municipioId" required>
                                           <option value="">Seleccione</option>
                                           @foreach( $municipios as $municipio )
@@ -49,7 +49,7 @@
                               <div class="flex items-center justify-center">
                                   <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
-                                      <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Parroquia</span>
+                                      <span class="bg-cyan-400 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Parroquia</span>
                                       <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-solid border-neutral-900 outline-2 font-bold" wire:model="parroquiaId" required>
                                           <option value="">Seleccione</option>
                                           @foreach( $parroquias as $parroquia )
@@ -103,7 +103,7 @@
                           <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                               <div class="w-full rounded-lg bg-gray-500">
                                 <div class="flex">
-                                  <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
+                                  <span class="bg-cyan-400 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
                                   <input wire:model="NombreJefe" type="text" class="w-full pl-3 border border-solid rounded-r-lg font-bold text-neutral-900 outline-2 border-slate-900" />
                                 </div>
                               </div>
@@ -186,7 +186,7 @@
                                     <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                       <div class="w-full rounded-lg bg-gray-500">
                                         <div class="flex">
-                                          <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
+                                          <span class="bg-cyan-400 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
                                           <input wire:model="NombreOrganizador" type="text" class="w-full text-neutral-900 pl-3 text-base border rounded-r-lg font-bold outline-2 border-slate-200" />
                                         </div>
                                       </div>
@@ -218,7 +218,7 @@
                                   <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                     <div class="w-full rounded-lg bg-gray-500">
                                       <div class="flex">
-                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold hover:bg-cyan-500 transition-colors">Nombre</span>
+                                        <span class="bg-cyan-400 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold hover:bg-cyan-500 transition-colors">Nombre</span>
                                         <input wire:model="NombreFormador" type="text" class="w-full text-neutral-900 pl-3 text-base border rounded-r-lg font-bold outline-2 border-slate-200" />
                                       </div>
                                     </div>
@@ -250,7 +250,7 @@
                                   <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                     <div class="w-full rounded-lg bg-gray-500">
                                       <div class="flex">
-                                        <span class="bg-cyan-900  rounded-tl-lg rounded-bl-lg p-2 text-white font-bold">Nombre</span>
+                                        <span class="bg-cyan-400  rounded-tl-lg rounded-bl-lg p-2 text-white font-bold">Nombre</span>
                                         <input wire:model="NombreMovilizador" type="text" class="w-full text-neutral-900 pl-3 border rounded-r-lg font-bold outline-2 border-slate-900" />
                                       </div>
                                     </div>
@@ -282,7 +282,7 @@
                                   <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                     <div class="w-full rounded-lg bg-gray-500">
                                       <div class="flex">
-                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
+                                        <span class="bg-cyan-400 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
                                         <input wire:model="NombreDefensa" type="text" class="w-full pl-3 border border-solid text-neutral-900 rounded-r-lg font-bold outline-2 border-slate-900" />
                                       </div>
                                     </div>
@@ -314,7 +314,7 @@
                                   <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                     <div class="w-full rounded-lg bg-gray-500">
                                       <div class="flex">
-                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
+                                        <span class="bg-cyan-400 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
                                         <input wire:model="NombreProductivo" type="text" class="w-full pl-2 border border-solid text-neutral-900 rounded-r-lg font-bold outline-2 border-slate-900" />
                                       </div>
                                     </div>
@@ -323,8 +323,45 @@
                               @endif
                             @endif
                           <div class="row">
+                            <div class="card-header">
+                              <h2 class=" mt-4 text-2xl text-cyan-400 font-bold text-center">INTEGRANTES DEL NBC</h2>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                              <table class="min-w-full divide-y divide-gray-200">
+                              <thead class="bg-cyan-400 text-white">
+                                <tr>
+                                <th class="px-4 py-2 text-left text-xs font-bold uppercase tracking-wider">#</th>
+                                <th class="px-4 py-2 text-left text-xs font-bold uppercase tracking-wider">Cédula</th>
+                                <th class="px-4 py-2 text-left text-xs font-bold uppercase tracking-wider">Nombre</th>
+                                <th class="px-4 py-2 text-left text-xs font-bold uppercase tracking-wider">Rol</th>
+                                <th class="px-4 py-2 text-left text-xs font-bold uppercase tracking-wider">Acciones</th>
+                                </tr>
+                              </thead>
+                              <tbody class="bg-white divide-y divide-gray-200">
+                                {{-- @forelse($integrantes as $i => $integrante) --}}
+                                <tr>
+                                  <td class="px-4 py-2 whitespace-nowrap"></td>
+                                  <td class="px-4 py-2 whitespace-nowrap"></td>
+                                  <td class="px-4 py-2 whitespace-nowrap"></td>
+                                  <td class="px-4 py-2 whitespace-nowrap"></td>
+                                  <td class="px-4 py-2 whitespace-nowrap"></td>
+                                  <td class="px-4 py-2 whitespace-nowrap"></td>
+                                  <td class="px-4 py-2 whitespace-nowrap"></td>
+                                  <td class="px-4 py-2 whitespace-nowrap">
+                                  <button wire:click="eliminarIntegrante()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs">Eliminar</button>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td colspan="5" class="px-4 py-2 text-center text-gray-500">No hay integrantes registrados.</td>
+                                </tr>
+                              </tbody>
+                              </table>
+                            </div>
+
+
                             <div class="col-sm-12">
-                              <div class="font-weight-bold text-white text-center"><h3>GEOREFERENCIACION</h3></div>
+                              <h3 class=" mt-4 text-2xl text-cyan-400 font-bold text-center">GEOREFERENCIACIÓN</h3>
                             </div>
                           </div>
                           <div class="items-center">
@@ -358,45 +395,52 @@
   </div>
 </div>
 
-{{-- <script>
-  var marker;
-  var coords = {};
-  initMap = function () 
-  {
-    navigator.geolocation.getCurrentPosition(
-      function (position){
-        coords =  {
-          lng: position.coords.longitude,
-          lat: position.coords.latitude
-        };
-        setMapa(coords);
-      },function(error){console.log(error);});
-  }
-  function setMapa (coords)
-  {
-    var map = new google.maps.Map(document.getElementById('map'),
-    {
+<script>
+  let marker;
+  let coords = {};
+
+  window.initMap = function () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          coords = {
+            lng: position.coords.longitude,
+            lat: position.coords.latitude
+          };
+          setMapa(coords);
+        },
+        function (error) {
+          console.error("Error al obtener ubicación:", error.message);
+          alert("No se pudo obtener tu ubicación. Revisa los permisos.");
+        }
+      );
+    } else {
+      alert("Tu navegador no soporta geolocalización");
+    }
+  };
+
+  function setMapa(coords) {
+    const map = new google.maps.Map(document.getElementById('map'), {
       zoom: 13,
-      center:new google.maps.LatLng(coords.lat,coords.lng),
+      center: new google.maps.LatLng(coords.lat, coords.lng),
     });
+
     marker = new google.maps.Marker({
       map: map,
       draggable: true,
       animation: google.maps.Animation.DROP,
-      position: new google.maps.LatLng(coords.lat,coords.lng),
-
+      position: new google.maps.LatLng(coords.lat, coords.lng),
     });
-    marker.addListener( 'dragend', function (event)
-    {
+
+    marker.addListener('dragend', function (event) {
       document.getElementById("latitud").value = this.getPosition().lat();
       document.getElementById("longitud").value = this.getPosition().lng();
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&callback=initMap&v=weekly" defer></script> --}}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&callback=initMap&v=weekly" defer></script>
 
-<script>
-  // initialize the map on the "map" div with a given center and zoom
+{{-- <script>
 
   var BING_KEY = 'AuhiCJHlGzhg93IqUH_oCpl_-ZUrIE6SPftlyGYUvr9Amx5nzA-WqGcPquyFZl4L'
 
@@ -404,7 +448,7 @@
 
   var bingLayer = L.tileLayer.bing(BING_KEY).addTo(map)
   
-</script>
+</script> --}}
 
 @section('js')
   <script src="{{ asset('js/functions3.js')}}" type="text/javascript"></script>
