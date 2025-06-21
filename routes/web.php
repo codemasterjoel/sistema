@@ -54,7 +54,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/nbc', registronbc::class)->name('nbc');
     Route::get('/nbc/crear', crearnbc::class)->name('nbc.crear');
     Route::get('/nbc/{id}', crearnbc::class)->name('nbc.editar');
-    // Route::get('/nbc/editar/{id}', [Livewire\crearnbc\editar::class]);
     Route::get('/saime', saime::class)->name('saime');
     Route::get('/mapa', mapa::class)->name('mapa');
     Route::get('/usuario', usuario::class)->name('usuario');

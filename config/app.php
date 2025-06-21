@@ -2,11 +2,27 @@
 
 return [
 
-    /**
-     * our demo variable
-     */
-    'hour' => env('SCHEDULED_HOUR', ''),
-    'min' => env('SCHEDULED_MIN', ''),
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Scheduler Configuration
+    |--------------------------------------------------------------------------
+    |
+    | These values are used by the application's console kernel (app/Console/Kernel.php)
+    | to dynamically configure the cron interval for scheduled tasks,
+    | particularly for the demo database refresh task.
+    |
+    | SCHEDULED_HOUR: Defines the hour component for the cron expression.
+    |                 Example: '3' for every 3rd hour or at 3 AM depending on SCHEDULED_MIN.
+    | SCHEDULED_MIN: Defines the minute component for the cron expression.
+    |                 Example: '30' for every 30th minute or at minute 30 of SCHEDULED_HOUR.
+    |
+    | If both are empty, a default schedule (e.g., daily) might apply within Kernel.php,
+    | but the execution of sensitive tasks like 'migrate:fresh --seed' is also
+    | guarded by APP_ENV and IS_DEMO environment variables.
+    |
+    */
+    'hour' => env('SCHEDULED_HOUR', ''), // Controls hour for scheduled tasks, see app/Console/Kernel.php
+    'min' => env('SCHEDULED_MIN', ''),  // Controls minute for scheduled tasks, see app/Console/Kernel.php
 
     /*
     |--------------------------------------------------------------------------
