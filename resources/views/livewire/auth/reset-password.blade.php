@@ -11,7 +11,7 @@
                         </div>
                         <div class="card-body">
 
-                            <form wire:submit="resetPassword" action="#" method="POST" role="form text-left">
+                            <form wire:submit="resetPassword" role="form text-left">
                                 <div>
                                     <label for="email">{{ __('Email') }}</label>
                                     <div class="@error('email')border border-danger rounded-3 @enderror mb-3">
@@ -47,8 +47,7 @@
                             </form>
 
                             @if ($showSuccesNotification)
-                                <div wire:model.live="showSuccesNotification"
-                                    class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
+                                <div class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
                                     <span class="alert-icon text-white"><i class="ni ni-like-2"></i></span>
                                     <span class="alert-text text-white">
                                         {{ __('Your password has been successfuly changed! You
@@ -60,8 +59,7 @@
                             @endif
 
                             @if ($showFailureNotification)
-                                <div wire:model.live="showFailureNotification"
-                                    class="mt-3 alert alert-light alert-dismissible fade show" role="alert">
+                                <div class="mt-3 alert alert-light alert-dismissible fade show" role="alert">
                                     <span class="alert-text">{{ 'Please enter the correct email address!' }}</span>
                                     <button wire:click="$set('showFailureNotification', false)" type="button"
                                         class="btn-close" data-bs-dismiss="alert" aria-label="Close">

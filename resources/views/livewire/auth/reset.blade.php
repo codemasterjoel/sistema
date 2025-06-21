@@ -26,14 +26,14 @@
                                 </div>
                             </form>
                             @if ($showSuccesNotification)
-                                <div wire:model.live="showSuccesNotification" class="mt-3 alert alert-success alert-dismissible fade show" role="alert">
+                                <div class="mt-3 alert alert-success alert-dismissible fade show" role="alert">
                                     <span class="alert-icon text-white"><i class="ni ni-like-2"></i></span>
                                     <span class="alert-text text-white uppercase">se ha enviado un correo para cambiar la contraseña</span>
                                     <button wire:click="$set('showSuccesNotification', false)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             @endif
                             @if ($showFailureNotification)
-                                <div wire:model.live="showFailureNotification" class="mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                                <div class="mt-3 alert alert-danger alert-dismissible fade show" role="alert">
                                     <span class="alert-text text-white uppercase">este correo no se encuentra registrado</span>
                                     <button wire:click="$set('showFailureNotification', false)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><strong>X</strong></button>
                                 </div>

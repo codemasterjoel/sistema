@@ -9,7 +9,7 @@
                             <h4 class="mb-0">{{ __('Forgot your password? Enter your email here') }}</h4>
                         </div>
                         <div class="card-body">
-                            <form wire:submit="recoverPassword" action="#" method="POST" role="form text-left">
+                            <form wire:submit="recoverPassword" role="form text-left">
                                 <div>
                                     <label for="email">{{ __('Email') }}</label>
                                     <div class="@error('email')border border-danger rounded-3 @enderror">
@@ -25,8 +25,7 @@
                                 </div>
                             </form>
                             @if ($showSuccesNotification)
-                                <div wire:model.live="showSuccesNotification"
-                                    class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
+                                <div class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
                                     <span class="alert-icon text-white"><i class="ni ni-like-2"></i></span>
                                     <span
                                         class="alert-text text-white">{{ __(' An email for resetting your password has been
@@ -38,8 +37,7 @@
                             @endif
 
                             @if ($showFailureNotification)
-                                <div wire:model.live="showFailureNotification"
-                                    class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
+                                <div class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
                                     <span class="alert-text text-white">
                                         {{ __('You are not registered as a user. Please sign
                                         up') }}

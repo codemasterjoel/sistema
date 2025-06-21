@@ -39,9 +39,8 @@
                                         <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Genero</span>
                                         <select wire:model="generoId" class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
                                             <option value="">Seleccione</option>
-                                                <option value="1">Femenima</option>
                                                 <option value="2">Femenina</option>
-                                                <option value="2">Masculino</option>
+                                        <option value="1">Masculino</option>
                                                 <option value="3">Otro</option>
                                         </select>
                                     </div>
@@ -141,7 +140,7 @@
                                 <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModal()">SALIR</button>
                             </span>
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                {{-- <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button> --}}
+                                <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>
                             </span>
                         </div>
                     </form>

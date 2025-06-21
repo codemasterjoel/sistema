@@ -2,7 +2,7 @@
     @if($modalReset)
         @include('livewire.auth.reset')
     @endif
-    @if(session()->has('success')== 'success')
+    @if(session()->has('success'))
         @include('livewire.components.success')
     @endif
     <div class="page-header">
@@ -29,7 +29,7 @@
                             <img src="{{asset('img/logo.svg')}}" class="navbar-brand-img h-100">
                         </div>
                         <div class="card-body">
-                            <form wire:submit="login" action="#" method="POST" role="form text-left">
+                            <form wire:submit="login" role="form text-left">
                                 <div class="mb-3">
                                     <label class="font-bold" for="email">{{ __('CORREO') }}</label>
                                     <div class="@error('email')border border-danger rounded-3 @enderror">
