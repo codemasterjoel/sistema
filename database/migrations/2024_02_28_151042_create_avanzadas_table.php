@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('avanzadas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->boolean('activo')->default(false);
             $table->timestamps();
         });
     }

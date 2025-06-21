@@ -15,7 +15,7 @@ class Login extends Component
     public $email, $modalReset = null;
     public $password = null;
     public $remember_me = false;  
-    public $showSuccesNotification, $showFailureNotification = false;
+    public $showSuccesNotification, $showFailureNotification, $showFailureLogin = false;
 
     protected $rules = [
         'email' => 'required|email:rfc,dns',
@@ -32,16 +32,18 @@ class Login extends Component
     {    
         $user = User::where('email', '=', $this->email)->first();
         
-        if($user->count() > 0){
+        if(isset($user)){
             if($user->email == $this->email and password_verify($this->password, $user->password)) 
             {
                 auth()->login($user, $this->remember_me);
                 return redirect()->intended('/dashboard'); 
-
             }else
             {
-                return $this->addError('email', trans('auth.failed')); 
+                $this->showFailureLogin = true;
             }
+        }else
+        {
+            $this->showFailureLogin = true;
         }
     }
     public function render()

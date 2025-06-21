@@ -13,7 +13,7 @@ class Campamento extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'estatus',
+        'matriculado',
         'cedula',
         'nombre',
         'apellido',
@@ -33,6 +33,8 @@ class Campamento extends Model
         'cargo',
         'vocero',
         'cargo_popular',
+        'fechaInicio',
+        'fechaCulminacion',
     ];
 
     public function estado()

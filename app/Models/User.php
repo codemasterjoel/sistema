@@ -23,6 +23,8 @@ class User extends Authenticatable
         'estado_id',
         'municipio_id',
         'parroquia_id',
+        'is_admin',
+        'is_active',
     ];
 
     protected $guarded = [];

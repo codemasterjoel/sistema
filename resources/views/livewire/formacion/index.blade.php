@@ -3,10 +3,10 @@
         <div class="col-12">
             <div class="card mb-4 mx-4">
                 <div class="card-header pb-0">
-                    <a href="#" wire:click="ver('luchador')" class="btn bg-gradient-success active mb-0 text-white" role="button" aria-pressed="true">LUCHADORES</a>
-                    <a href="#" wire:click="ver('postulados')" class="btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">POSTULADOS</a>
-                    <a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a>
-                    <a href="#" wire:click="ver('campamento')" class="btn bg-gradient-info active mb-0 text-white" role="button" aria-pressed="true">CAMPAMENTOS</a>
+                    @if(auth()->user()->area_id == 1)<a href="#" wire:click="ver('luchador')" class="btn bg-gradient-success active mb-0 text-white" role="button" aria-pressed="true">LUCHADORES</a>@endif
+                    @if(auth()->user()->area_id == 11)<a href="#" wire:click="ver('postulados')" class="btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">POSTULADOS</a>@endif
+                    @if(auth()->user()->area_id == 11)<a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a>@endif
+                    @if(auth()->user()->area_id == 1)<a href="#" wire:click="ver('campamento')" class="btn bg-gradient-info active mb-0 text-white" role="button" aria-pressed="true">CAMPAMENTOS</a>@endif
                     @if($modalLuchador)
                         @include('livewire.formacion.verlsb')
                     @endif
@@ -136,7 +136,6 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-uppercase text-secondary text-dark font-weight-bolder">#</th>
-                                                <th class="text-uppercase text-secondary text-dark font-weight-bolder ps-2">foto</th>
                                                 <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">nombre</th>
                                                 <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">estado</th>
                                                 <th class="text-center text-uppercase text-secondary text-dark font-weight-bolder">municipio</th>
@@ -150,15 +149,16 @@
                                             @foreach ($campamentos as $campamento)
                                             <?php $indice += 1; ?>
                                             <tr><td class="ps-4"><p class="font-weight-bold mb-0"><?php echo $indice; ?></p></td>
-                                                <td><div><img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3"></div></td>
                                                 <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->nombre}} {{$campamento->apellido}}</p></td>
                                                 <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->estado->nombre}}</p></td>
                                                 <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->municipio->nombre}}</p></td>
                                                 <td class="text-center text-uppercase"><p class="font-weight-bold mb-0">{{$campamento->parroquia->nombre}}</p></td>
-                                                <td class="text-center text-uppercase"><p class="font-weight-bold mb-0 {{$campamento->estatus ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$campamento->estatus ? 'activo' : 'inactivo'}}</p></td>
+                                                <td class="text-center text-uppercase"><p class="font-weight-bold mb-0 {{$campamento->matriculado ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$campamento->matriculado ? 'Matriculado' : 'No Matriculado'}}</p></td>
                                                 <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar formacion">
                                                     <a wire:click="editarEstudiante('{{$campamento->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
-                                                    <a wire:click="certificado('{{$campamento->id}}')" rel="tooltip" title="CERTIFICADO" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
+                                                    @if($campamento->matriculado)
+                                                        <a wire:click="certificado('{{$campamento->id}}')" rel="tooltip" title="CERTIFICADO" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -24,9 +24,9 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $modalLuchador, $modalPostulado, $modalFormacion, $verPostulado, $modalCampamento = false;
+    public $modalLuchador, $modalPostulado, $modalFormacion, $verPostulado, $modalCampamento, $matriculado = false;
     public $municipios, $municipioId, $estados, $estadoId, $parroquias, $parroquiaId, $nacionalidad, $direccion, $nivelesAcademicos, $niveles, $nivelAcademicoId, $responsabilidades, $responsabilidad, $cedula, $avanzadas, $avanzada, $correo, $fechaNacimiento = null; //Fecha Nacimiento
-    public $nombreCompleto, $nombre, $apellido, $generos, $generoId, $estatus, $telefono, $vocero, $pertenece_al_psuv, $cargo_popular, $cargo, $nivelId, $idCampamento= null;
+    public $nombreCompleto, $nombre, $apellido, $generos, $generoId, $estatus, $telefono, $vocero, $pertenece_al_psuv, $cargo_popular, $cargo, $nivelId, $idCampamento, $fechaInicio, $fechaCulminacion = null;
     public $search = "";
     public $data = "campamento";
 
@@ -149,7 +149,7 @@ class Index extends Component
         $this->idCampamento = $id;
         $this->nacionalidad = $estudiante->letra;
         $this->nombre = $estudiante->nombre;
-        $this->estatus = $estudiante->estatus;
+        $this->matriculado = $estudiante->matriculado;
         $this->vocero = $estudiante->vocero;
         $this->pertenece_al_psuv = $estudiante->pertenece_al_psuv;
         $this->cargo_popular = $estudiante->cargo_popular;
@@ -168,6 +168,8 @@ class Index extends Component
         $this->municipioId = $estudiante->municipio_id;
         $this->parroquias = Parroquia::where('municipio_id', $estudiante->municipio_id)->get();
         $this->parroquiaId = $estudiante->parroquia_id;
+        $this->fechaInicio = $estudiante->fechaInicio;
+        $this->fechaCulminacion = $estudiante->fechaCulminacion;
 
         $this->modalCampamento = true;
     }
@@ -211,6 +213,9 @@ class Index extends Component
                 'cargo' => $this->cargo,
                 'vocero' => $this->vocero,
                 'cargo_popular' => $this->cargo_popular,
+                'matriculado' => $this->matriculado,
+                'fechaInicio' => $this->fechaInicio ? Carbon::parse($this->fechaInicio) : null,
+                'fechaCulminacion' => $this->fechaCulminacion ? Carbon::parse($this->fechaCulminacion) : null,
             ]);
 
             $this->modalCampamento = false;
@@ -244,13 +249,14 @@ class Index extends Component
             $this->cargo_popular = true;
         }
     }
-    public function cambiarEstatus()
+    public function cambiarMatricular()
     {
-        if ($this->estatus) {
-            $this->estatus = false;
+        if ($this->matriculado) {
+            $this->matriculado = 0;
         }else
         {
-            $this->estatus = true;
+            $this->matriculado = 1;
+            //dd($this->matriculado);
         }
     }
     public function limpiarCampos()

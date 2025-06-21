@@ -51,6 +51,12 @@
                                     <button type="submit" class="btn bg-gradient-danger w-100 mt-4 mb-0 font-bold">{{ __('Ingresar') }}</button>
                                 </div>
                             </form>
+                            @if ($showFailureLogin)
+                                <div wire:model.live="showFailureLogin" class="mt-3 alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span class="alert-text text-white uppercase">Usuario y Contraseña no validos</span>
+                                    <button wire:click="$set('showFailureLogin', false)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><strong>X</strong></button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

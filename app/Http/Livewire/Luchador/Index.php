@@ -248,4 +248,33 @@ class Index extends Component
             echo $pdf->stream();
         }, 'carnet.pdf');
     }
+
+        public function pertenecePSUV()
+    {
+        if ($this->pertenece_al_psuv) {
+            $this->pertenece_al_psuv = false;
+            $this->nivelId = null;
+        }else
+        {
+            $this->pertenece_al_psuv = true;
+        }
+    }
+    public function esVocero()
+    {
+        if ($this->vocero) {
+            $this->vocero = false;
+        } else {
+            $this->vocero = true;
+        }
+    }
+    public function cambiarCargo()
+    {
+        if ($this->cargo_popular) {
+            $this->cargo_popular = false;
+            $this->cargo = null;
+        }else
+        {
+            $this->cargo_popular = true;
+        }
+    }
 }

@@ -48,14 +48,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-sm-12 mb-xl-0">
-                                <label class="relative inline-flex cursor-pointer items-center"> {{-- campo activo --}}
-                                    <input type="checkbox" value="1" class="peer sr-only" wire:model.live="estatus" />
-                                    <div class=" peer flex flex-row-reverse h-8  mr-1 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-16 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
-                                        <span>Activo</span>
-                                        <span>Inactivo</span>
+                            <div class="col-xl-3 col-sm-12 mb-xl-0">
+                                <div class="flex items-container justify-center"> {{-- campo Direccion --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <label class="relative inline-flex cursor-pointer items-center">
+                                                @if ($vocero)
+                                                    <input wire:click="esVocero()" type="button" value="ACTIVO" class=" w-24 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @else
+                                                    <input wire:click="esVocero()" type="button" value="INACTIVO" class=" w-24 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @endif
+                                            </label>
+                                        </div>
                                     </div>
-                                </label>
+                                </div>
                             </div>
                         </div>
 
@@ -126,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="grid grid-cols-3 gap-4">
                             <div class="flex items-center justify-center pb-4"> {{-- campo estado --}}
                                 <div class="w-full rounded-lg">
@@ -228,12 +234,13 @@
                                 <div class="flex items-container justify-center"> {{-- campo Direccion --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
-                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="pertenece_al_psuv" />
-                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-400 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
-                                                  <span>SI</span>
-                                                  <span>NO</span>
-                                              </div><h5 class="p-2">¿Pertenece al PSUV/JPSUV?</h5>
+                                            <label class="relative inline-flex cursor-pointer items-center">
+                                                @if ($pertenece_al_psuv)
+                                                    <input wire:click="pertenecePSUV()" type="button" value="SI" class=" w-12 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @else
+                                                    <input wire:click="pertenecePSUV()" type="button" value="NO" class=" w-12 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @endif
+                                                <h5 class="p-2">¿Pertenece al PSUV/JPSUV?</h5>
                                             </label>
                                         </div>
                                     </div>
@@ -244,7 +251,7 @@
                                 <div class="flex items-center justify-center">
                                     <div class="w-full rounded-lg bg-gray-500">
                                         <div class="flex">
-                                            <span class="bg-cyan-400 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold ">Nivel</span>
+                                            <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold ">Nivel</span>
                                             <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-neutral-900 font-bold border-solid outline-2" wire:model="nivelId" required>
                                                 <option value="">Seleccione</option>
                                                 @foreach( $niveles as $nivel )
@@ -257,34 +264,38 @@
                                 </div>
                             @endif
                         </div>
+
                         <div class="row pb-4">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 <div class="flex items-container justify-center"> {{-- campo Direccion --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
-                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="vocero" />
-                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-400 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
-                                                  <span>SI</span>
-                                                  <span>NO</span>
-                                              </div><h5 class="p-2">¿Es Vocero del Consejo Comunal?</h5>
+                                            <label class="relative inline-flex cursor-pointer items-center">
+                                                @if ($vocero)
+                                                    <input wire:click="esVocero()" type="button" value="SI" class=" w-12 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @else
+                                                    <input wire:click="esVocero()" type="button" value="NO" class=" w-12 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @endif
+                                                <h5 class="p-2">¿Es Vocero del Consejo Comunal?</h5>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row pb-4">
                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 <div class="flex items-container justify-center"> {{-- campo Direccion --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <label class="relative inline-flex cursor-pointer items-center "> {{-- campo activo --}}
-                                              <input type="checkbox" value="1" class="peer sr-only" wire:model.live="cargo_popular" />
-                                              <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-400 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
-                                                  <span>SI</span>
-                                                  <span>NO</span>
-                                              </div><h5 class="p-2">¿Cuenta con un Cargo de elección popular?</h5>
+                                            <label class="relative inline-flex cursor-pointer items-center">
+                                                @if ($cargo_popular)
+                                                    <input wire:click="cambiarCargo()" type="button" value="SI" class=" w-12 bg-gradient-to-r from-cyan-400 to-cyan-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @else
+                                                    <input wire:click="cambiarCargo()" type="button" value="NO" class=" w-12 bg-gradient-to-r from-red-400 to-red-600 font-bold text-white py-2 rounded-lg mx-auto block">
+                                                @endif
+                                                <h5 class="p-2">¿Cuenta con un Cargo de elección popular?</h5>
                                             </label>
                                         </div>
                                     </div>
@@ -295,7 +306,7 @@
                                 <div class="flex items-center justify-center">
                                     <div class="w-full rounded-lg bg-gray-500">
                                         <div class="flex">
-                                            <span class="bg-cyan-400 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold ">Cargo</span>
+                                            <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold ">Cargo</span>
                                             <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-neutral-900 font-bold border-solid outline-2" wire:model="cargo" required>
                                                 <option value="">Seleccione</option>
                                                 <option value="Diputado(a)">Diputado(a)</option>
@@ -308,7 +319,7 @@
                                 </div>
                             </div>
                         @endif
-                        </div>   
+                        </div> 
                         <div class="flex items-center justify-center pb-4"> {{-- campo Correo --}}
                             <div class="w-full rounded-lg">
                                 <div class="flex">

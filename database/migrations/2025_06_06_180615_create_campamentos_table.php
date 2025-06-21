@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('telefono')->nullable();
             $table->string('correo');
             $table->string('direccion', 200);
+            $table->boolean('matriculado')->default(false);
+            $table->date('fechaInicio')->nullable();
+            $table->date('fechaCulminacion')->nullable();
             // $table->foreignIdFor(Pais::class)->nullable()->references('id')->on('pais')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('genero_id')->nullable()->references('id')->on('generos')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('nivel_academico_id')->nullable()->references('id')->on('nivel_academicos')->nullOnDelete()->cascadeOnUpdate();

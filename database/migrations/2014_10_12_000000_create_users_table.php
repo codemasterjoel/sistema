@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_active')->default(true);
 
             $table->foreignId('area_id')->nullable()->references('id')->on('areas')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('nivel_id')->nullable()->references('id')->on('nivels')->nullOnDelete()->cascadeOnUpdate();

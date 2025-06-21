@@ -18,7 +18,7 @@
                 </a>
             </li>
             {{-- PERFIL DE USUARIO --}}
-            @if (auth()->user()->nivel_id == 1)
+            @if (auth()->user()->is_admin == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'perfil' ? 'active' : '' }}" href="{{ route('perfil') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -29,7 +29,7 @@
                 </li>
             @endif
             {{-- REGISTRO DE LSB --}}
-            @if (auth()->user()->nivel_id == 1)
+            @if (auth()->user()->area_id == 11 || auth()->user()->is_admin == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'lsb' ? 'active' : '' }}" href="{{route('lsb')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -38,6 +38,9 @@
                         <span class="nav-link-text ms-1"><b>REGISTRO LSB</b></span>
                     </a>
                 </li>
+            @endif
+            {{-- REGISTRO 1x10 FFM --}}
+            @if (auth()->user()->area_id == 2 || auth()->user()->is_admin == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'ffm' ? 'active' : '' }}" href="{{ route('ffm') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -48,7 +51,7 @@
                 </li>
             @endif
             {{-- REGISTRO DE NBC --}}
-            @if (auth()->user()->nivel_id == 1)
+            @if (auth()->user()->area_id == 11 || auth()->user()->is_admin == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'nbc' ? 'active' : '' }}" href="{{route('nbc')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -60,7 +63,7 @@
             @endif
             <!-- FORMACION -->
              
-            @if (auth()->user()->nivel_id == 1 || auth()->user()->nivel_id == 2)
+            @if (auth()->user()->area_id == 11 || auth()->user()->area_id == 1 || auth()->user()->is_admin == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'formacion' ? 'active' : '' }}" href="{{route('formacion')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -72,19 +75,17 @@
             @endif
 
             {{-- MAPA --}}
-            @if (auth()->user()->nivel_id == 1)
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'mapa' ? 'active' : '' }}" href="{{ route('mapa') }}">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <span class="material-icons {{ in_array(request()->route()->getName(),['mapa']) ? 'text-white' : 'text-dark' }}">person_pin_circle</span>
-                        </div>
-                        <span class="nav-link-text ms-1"><b>MAPA</b></span>
-                    </a>
-                </li>
-            @endif
+            <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() == 'mapa' ? 'active' : '' }}" href="{{ route('mapa') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <span class="material-icons {{ in_array(request()->route()->getName(),['mapa']) ? 'text-white' : 'text-dark' }}">person_pin_circle</span>
+                    </div>
+                    <span class="nav-link-text ms-1"><b>MAPA</b></span>
+                </a>
+            </li>
 
             {{-- REPORTES --}}
-            <!-- @if (auth()->user()->nivel_id == 1)
+            @if (auth()->user()->is_admin == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'reporte' ? 'active' : '' }}" href="{{ route('reporte') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -93,14 +94,14 @@
                         <span class="nav-link-text ms-1"><b>REPORTE</b></span>
                     </a>
                 </li>
-            @endif -->
+            @endif
 
-            @if (auth()->user()->nivel_id == 1)
+            @if (auth()->user()->is_admin == 1)
             <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">CONFIGURACIÓN</h6>
             </li>
             @endif
-            @if (auth()->user()->nivel_id == 1)
+            @if (auth()->user()->is_admin == 1)
                 {{-- GESTIÓN DE USUARIOS --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'usuario' ? 'active' : '' }}" href="{{ route('usuario') }}">
@@ -111,22 +112,27 @@
                     </a>
                 </li>
                 {{-- SAIME --}}
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'saime' ? 'active' : '' }}" href="{{ route('saime')}}">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <span class="material-icons {{ in_array(request()->route()->getName(),['saime']) ? 'text-white' : 'text-dark' }}">business</span>
-                        </div>
-                        <span class="nav-link-text ms-1"><b>SAIME</b></span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'sessions' ? 'active' : '' }}" href="{{ route('sessions')}}">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <span class="material-icons {{ in_array(request()->route()->getName(),['sessions']) ? 'text-white' : 'text-dark' }}">business</span>
-                        </div>
-                        <span class="nav-link-text ms-1"><b>SESIONES</b></span>
-                    </a>
-                </li>
+                @if (auth()->user()->is_admin == 1)
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteName() == 'saime' ? 'active' : '' }}" href="{{ route('saime')}}">
+                            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <span class="material-icons {{ in_array(request()->route()->getName(),['saime']) ? 'text-white' : 'text-dark' }}">business</span>
+                            </div>
+                            <span class="nav-link-text ms-1"><b>SAIME</b></span>
+                        </a>
+                    </li>               
+                @endif
+                {{-- GESTIÓN DE SESIONES --}}
+                @if (auth()->user()->is_admin == 1)
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteName() == 'sessions' ? 'active' : '' }}" href="{{ route('sessions')}}">
+                            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <span class="material-icons {{ in_array(request()->route()->getName(),['sessions']) ? 'text-white' : 'text-dark' }}">business</span>
+                            </div>
+                            <span class="nav-link-text ms-1"><b>GESTIÓN DE SESIONES</b></span>
+                        </a>
+                    </li>
+                @endif
             @endif
             <li class="nav-item">
                 <a href="{{ url('logout') }}" class=" nav-link btn bg-gradient-danger active text-white" role="button" aria-pressed="true">Salir</a>
