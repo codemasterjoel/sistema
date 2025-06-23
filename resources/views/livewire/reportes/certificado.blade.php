@@ -26,8 +26,8 @@
 			<tr>
 				<td style="text-align:justify; text-indent: 2em;">
                     Por medio de la presente, la Escuela Nacional Robinsoniana, acredita y certifica que <b style="text-transform: uppercase;">{{ $estudiante->apellido }} {{ $estudiante->nombre }}</b>, identificado(a) con el documento de identidad <b style="text-transform: uppercase;">{{ $estudiante->letra }}-{{ $estudiante->cedula }}</b>, 
-                    ha aprobado satisfactoriamente el curso denominado "Escuela de Base, Memoria, Ideario, Militancia", impartido por esta institución durante el período comprendido entre el <b style="text-transform: uppercase;">00/00/0000</b> y el 
-                    <b style="text-transform: uppercase;">00/00/0000</b>.
+                    ha aprobado satisfactoriamente el curso denominado "Escuela de Base, Memoria, Ideario, Militancia", impartido por esta institución durante el período comprendido entre el <b style="text-transform: uppercase;">{{$estudiante->fechaInicio}}</b> y el 
+                    <b style="text-transform: uppercase;">{{$estudiante->fechaCulminacion}}</b>.
 				</td>
 			</tr>
             <tr>

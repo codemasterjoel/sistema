@@ -165,7 +165,6 @@ class Index extends Component
         $this->vocero = $lsb->vocero;
         $this->cargo_popular = $lsb->cargo_popular;
         
-
         session()->flash('success', 'success');
 
         $this->abrirModal();

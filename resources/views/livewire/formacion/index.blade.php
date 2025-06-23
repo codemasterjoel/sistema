@@ -3,10 +3,10 @@
         <div class="col-12">
             <div class="card mb-4 mx-4">
                 <div class="card-header pb-0">
-                    @if(auth()->user()->area_id == 1)<a href="#" wire:click="ver('luchador')" class="btn bg-gradient-success active mb-0 text-white" role="button" aria-pressed="true">LUCHADORES</a>@endif
-                    @if(auth()->user()->area_id == 11)<a href="#" wire:click="ver('postulados')" class="btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">POSTULADOS</a>@endif
-                    @if(auth()->user()->area_id == 11)<a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a>@endif
-                    @if(auth()->user()->area_id == 1)<a href="#" wire:click="ver('campamento')" class="btn bg-gradient-info active mb-0 text-white" role="button" aria-pressed="true">CAMPAMENTOS</a>@endif
+                    @if(auth()->user()->area_id == 1 || auth()->user()->is_admin)<a href="#" wire:click="ver('luchador')" class="btn bg-gradient-success active mb-0 text-white" role="button" aria-pressed="true">LUCHADORES</a>@endif
+                    @if(auth()->user()->area_id == 11 || auth()->user()->is_admin)<a href="#" wire:click="ver('postulados')" class="btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">POSTULADOS</a>@endif
+                    @if(auth()->user()->area_id == 11 || auth()->user()->is_admin)<a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a>@endif
+                    @if(auth()->user()->area_id == 1 || auth()->user()->is_admin)<a href="#" wire:click="ver('campamento')" class="btn bg-gradient-info active mb-0 text-white" role="button" aria-pressed="true">CAMPAMENTOS</a>@endif
                     @if($modalLuchador)
                         @include('livewire.formacion.verlsb')
                     @endif

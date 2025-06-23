@@ -21,7 +21,6 @@
                         @if(session()->has('mensaje')== 'delete')
                             @include('livewire.components.delete')
                         @endif
-
                         @if ($nbcs->count())
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
@@ -49,7 +48,8 @@
                                                 {{-- <td class="text-center text-uppercase"><p class=" text-dark font-weight-bold mb-0 {{$nbc->estatus ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$nbc->estatus ? 'activo' : 'inactivo'}}</p></td> --}}
                                                 {{-- <td class="text-center text-uppercase"><p class=" text-dark font-weight-bold">{{$lsb->estatus ? 'activo' : 'inactivo'}}</p></td> --}}
                                                 <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar NBC">
-                                                    <a href="{{route('nbc.editar', [$nbc->id])}}" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
+                                                    <a wire:click="editar('{{$nbc->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>                                                    
+                                                    {{-- <a href="{{route('nbc.editar', [$nbc->id])}}" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a> --}}
                                                     <a wire:click="borrar('{{$nbc->id}}')" class=" text-danger font-bold py-2 px-4"><span class="material-symbols-outlined">person_cancel</span></a>
                                                 </td>
                                             </tr>

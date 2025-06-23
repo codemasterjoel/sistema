@@ -4,38 +4,31 @@ namespace App\Http\Livewire\Mapa;
 
 use Livewire\Component;
 use App\Models\NBC;
+use App\Models\Estado;
+use Livewire\WithPagination;
 
 
 class Index extends Component
 {
-    public $initialMarkers;
+    use WithPagination;
+    public $estadoId, $divmapa = null;
+
     public function render()
     {
-        $this->initialMarkers = [
-            [
-                'position' => [
-                    'lat' => 10.5109229,
-                    'lng' => -66.9123303
-                ],
-                'draggable' => true
-            ],
-            [
-                'position' => [
-                    'lat' => 10.5080043,
-                    'lng' => -66.8992691
-                ],
-                'draggable' => false
-            ],
-            [
-                'position' => [
-                    'lat' => 10.497788714576616,
-                    'lng' => -66.9116850756751
-                ],
-                'draggable' => true
-            ]
-        ];
-
+        $estados = Estado::all();
+        //$this->nbcs = NBC::where('latitud', "<>", "")->get();
         $nbcs = NBC::where('latitud', "<>", "")->get();
-        return view('livewire.mapa.index', ['nbcs' => $nbcs]);
+
+        return view('livewire.mapa.index', [
+            'estados' => $estados,
+            'nbcs' => $nbcs,
+        ]);
+    }
+    public function updatedEstadoId($id)
+    {
+        $nbcs = NBC::where('estado_id', $this->estadoId);
+        return view('livewire.mapa.index', [
+            'nbcs' => $nbcs->get(),
+        ]);
     }
 }

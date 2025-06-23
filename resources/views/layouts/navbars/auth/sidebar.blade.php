@@ -29,7 +29,7 @@
                 </li>
             @endif
             {{-- REGISTRO DE LSB --}}
-            @if (auth()->user()->area_id == 11 || auth()->user()->is_admin == 1)
+            @if (auth()->user()->area_id == 11 || auth()->user()->area_id == 12 || auth()->user()->is_admin == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'lsb' ? 'active' : '' }}" href="{{route('lsb')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -51,7 +51,7 @@
                 </li>
             @endif
             {{-- REGISTRO DE NBC --}}
-            @if (auth()->user()->area_id == 11 || auth()->user()->is_admin == 1)
+            @if (auth()->user()->area_id == 11 || auth()->user()->area_id == 12 || auth()->user()->is_admin == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'nbc' ? 'active' : '' }}" href="{{route('nbc')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
