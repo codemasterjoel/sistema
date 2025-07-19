@@ -27,11 +27,11 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $modal, $estado, $filtro = false;
+    public $estatus, $modal, $estado, $filtro = false;
     public $estados, $municipios, $parroquias, $nivelesAcademicos, $niveles, $responsabilidades = null;
-    public $cedula, $nacionalidad, $avanzadas, $correo, $direccion, $fechaNacimiento, $nombre, $apellido = null;
+    public $cedula, $nacionalidadId, $avanzadas, $correo, $direccion, $fechaNacimiento, $nombre, $apellido = null;
     public $generos, $pertenece_al_psuv, $cargo, $vocero, $cargo_popular = null;
-    public $estatus, $telefono, $edad, $inactivo, $id = null;
+    public $telefono, $edad, $inactivo, $id = null;
     public $search = "";
     public $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
 
@@ -77,6 +77,7 @@ class Index extends Component
     }
     public function limpiarCampos()
     {
+        $this->id = null;
         $this->estatus = false;
         $this->cedula = null;
         $this->nombre = null;
@@ -93,13 +94,16 @@ class Index extends Component
         $this->parroquiaId = null;
         $this->direccion = null;
         $this->paisId = null;
-        $this->nacionalidad = null;
+        $this->nacionalidadId = null;
         $this->edad = null;
         $this->nivelId = null;
         $this->pertenece_al_psuv = null;
         $this->cargo = null;
         $this->vocero = null;
         $this->cargo_popular = null;
+        $this->municipios = null;
+        $this->parroquias = null;
+        $this->estados = null;
     }
     public function updatedEstadoId($id)
     {
@@ -157,31 +161,42 @@ class Index extends Component
         $this->parroquias = Parroquia::where('municipio_id', $lsb->municipio_id)->get();
         $this->correo = $lsb->correo;
         $this->direccion = $lsb->direccion;
-        $this->nacionalidad = $lsb->letra;
+        $this->nacionalidadId = $lsb->letra;
         $this->edad = $lsb->edad;
         $this->nivelId = $lsb->nivel_id;
         $this->pertenece_al_psuv = $lsb->pertenece_al_psuv;
         $this->cargo = $lsb->cargo;
         $this->vocero = $lsb->vocero;
         $this->cargo_popular = $lsb->cargo_popular;
-        
-        session()->flash('success', 'success');
-
-        $this->abrirModal();
     }
     public function guardar()
     {
-        if ($this->estatus == false) {
-            $this->inactivo = Carbon::now()->toDateTimeString();
-        }else
-        {
-            $this->inactivo = null;
-        }
+        $this->estatus ?? $this->estatus=false;
+        $this->pertenece_al_psuv ?? $this->pertenece_al_psuv = false;
+        $this->vocero ?? $this->vocero = false;
+        $this->cargo_popular ?? $this->cargo_popular = false;
+
+        $this->validate([
+            'nacionalidadId' => 'required',
+            'cedula' => 'required|numeric',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'fechaNacimiento' => 'required|date',
+            'telefono' => 'required',
+            'correo' => 'required|email',
+            'avanzadaId' => 'required',
+            'generoId' => 'required',
+            'nivelAcademicoId' => 'required',
+            'responsabilidadId' => 'required',
+            'estadoId' => 'required',
+            'direccion' => 'required',
+        ]);
+
         $this->edad = Carbon::parse($this->fechaNacimiento)->age;
 
         $lsb = RegistroLuchador::updateOrCreate(['id' => $this->id],
             [
-            'letra' => $this->nacionalidad,
+            'letra' => $this->nacionalidadId,
             'estatus' => $this->estatus,
             'cedula' => $this->cedula,
             'nombre' => $this->nombre,
@@ -208,7 +223,6 @@ class Index extends Component
          
         session()->flash('success', 'success');
          
-         $this->cerrarModal();
          $this->limpiarCampos();
     }
     public function borrar($id)
@@ -273,6 +287,14 @@ class Index extends Component
         }else
         {
             $this->cargo_popular = true;
+        }
+    }
+    public function activo()
+    {
+        if ($this->estatus) {
+            $this->estatus = false;
+        } else {
+            $this->estatus = true;
         }
     }
 }

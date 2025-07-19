@@ -39,12 +39,10 @@ class Index extends Component
     }
     public function render()
     {
-
         $nbcs = NBC::where('nombre', 'like', "%$this->search%")
         ->paginate(5);
         $this->estados = Estado::all();
         return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
-
     }
     public function crear()
     {
@@ -83,7 +81,6 @@ class Index extends Component
         {
             $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaJefe)->firstOrFail(); 
             //$validar_lsb = RegistroLuchador::where('cedula', '=', $this->CedulaJefe)->get();
-
             
             $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
             ->orWhere('organizador_id', '=', $validar_lsb->id)

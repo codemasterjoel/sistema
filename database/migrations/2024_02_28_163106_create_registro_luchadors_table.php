@@ -14,7 +14,7 @@ return new class extends Migration
             // $table->id();
             $table->uuid('id')->primary()->default(Uuid::uuid4()->toString());
             $table->string('letra')->default('V');
-            $table->boolean('estatus')->default('1');
+            $table->boolean('estatus')->default(false);
             $table->date('inactivo')->nullable();
             $table->Integer('cedula')->unique();
             $table->string('nombre');

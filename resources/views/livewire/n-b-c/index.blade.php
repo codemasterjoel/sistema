@@ -82,7 +82,7 @@
                 </div>
                 <div class="modal-body">
                         <form>
-                            <div class=" flex items-stretch pt-4"> {{-- campo Nombre del NBC --}}
+                            <div class="flex items-stretch pt-4"> {{-- campo Nombre del NBC --}}
                                 <span class="flex bg-cyan-400 font-bold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-900 px-3 py-[0.25rem] text-center">Nombre del NBC</span>
                                 <input wire:model="NombreNBC" type="text" class="w-full flex-auto relative pl-3 border border-solid rounded-r-lg font-bold text-neutral-900 text-uppercase outline-2 border-neutral-900" />
                             </div>
