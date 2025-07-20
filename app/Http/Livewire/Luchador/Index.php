@@ -12,6 +12,7 @@ use App\Models\Parroquia;
 use App\Models\Genero;
 use App\Models\Avanzada;
 use App\Models\NivelAcademico;
+use App\Models\Profesion;
 use App\Models\Nivel;
 use App\Models\Responsabilidad;
 use App\Models\Saime;
@@ -29,12 +30,12 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $estatus, $modal, $estado, $filtro = false;
-    public $estados, $municipios, $parroquias, $comunas, $nivelesAcademicos, $niveles, $responsabilidades = null;
+    public $estados, $municipios, $parroquias, $comunas, $nivelesAcademicos, $profesiones, $niveles, $responsabilidades = null;
     public $cedula, $nacionalidadId, $avanzadas, $correo, $direccion, $fechaNacimiento, $nombre, $apellido = null;
     public $generos, $pertenece_al_psuv, $cargo, $vocero, $cargo_popular = null;
     public $telefono, $edad, $inactivo, $id = null;
     public $search = "";
-    public $paisId, $estadoId, $municipioId, $parroquiaId, $comunaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
+    public $paisId, $estadoId, $municipioId, $parroquiaId, $comunaId, $nivelAcademicoId, $profesionId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
 
     public function updatingSearch()
     {
@@ -107,6 +108,8 @@ class Index extends Component
         $this->estados = null;
         $this->comunas = null;
         $this->comunaId = null;
+        $this->profesionId = null;
+        $this->profesiones = null;
     }
     public function updatedEstadoId($id)
     {
@@ -159,6 +162,7 @@ class Index extends Component
         $this->generoId = $lsb->genero_id;
         $this->telefono = $lsb->telefono;
         $this->nivelAcademicoId = $lsb->nivel_academico_id;
+        $this->profesionId = $lsb->profesion_id;
         $this->avanzadaId = $lsb->avanzada_id;
         $this->responsabilidadId = $lsb->responsabilidad_id;
         $this->estadoId = $lsb->estado_id;
@@ -216,6 +220,7 @@ class Index extends Component
             'avanzada_id' => $this->avanzadaId,
             'genero_id' => $this->generoId,
             'nivel_academico_id' => $this->nivelAcademicoId,
+            'profesion_id' => $this->profesionId,
             'responsabilidad_id' => $this->responsabilidadId,
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
@@ -306,5 +311,9 @@ class Index extends Component
         } else {
             $this->estatus = true;
         }
+    }
+    public function updatedNivelAcademicoId($id){
+        $this->profesionId = null;
+        $this->profesiones = Profesion::where('nivel_academico_id', $id)->get();
     }
 }

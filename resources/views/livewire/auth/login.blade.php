@@ -285,7 +285,7 @@
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
                                             <span class="bg-cyan-400 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Nivel Academico</span>
-                                            <select class=" flex-auto w-[1px] pl-3 border border-solid rounded-r-lg border-slate-900 text-slate-900 outline-2 font-bold" wire:model="nivelAcademicoId" required>
+                                            <select class=" flex-auto w-[1px] pl-3 border border-solid rounded-r-lg border-slate-900 text-slate-900 outline-2 font-bold" wire:model.live="nivelAcademicoId" required>
                                                 <option value="">Seleccione</option>
                                                 @foreach( $nivelesAcademicos as $nivelacademico )
                                                     <option value="{{ $nivelacademico->id }}">{{ $nivelacademico->nombre }}</option>
@@ -296,8 +296,27 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                            @if (!is_null($profesiones)) {{-- campo Profesion --}}
+                                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                    <div class="flex items-center justify-center pt-4"> {{-- campo Responsabilidad --}}
+                                        <div class="w-full rounded-lg">
+                                            <div class="flex">
+                                                <span class="bg-cyan-400 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Carrera</span>
+                                                <select class=" flex-auto w-[1px] pl-3 border border-solid rounded-r-lg border-slate-900 text-slate-900 outline-2 font-bold" wire:model="profesionId" required>
+                                                    <option value="">Seleccione</option>
+                                                    @foreach( $profesiones as $profesion )
+                                                        <option value="{{ $profesion->id }}">{{ $profesion->nombre }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('profesionId') <div class="text-danger">{{ $message }}</div> @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 <div class="flex items-center justify-center pt-4"> {{-- campo Responsabilidad --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Avanzada;
 use App\Models\Estado;
 use App\Models\NivelAcademico;
+use App\Models\Profesion;
 use App\Models\Nivel;
 use App\Models\Responsabilidad;
 use App\Models\Genero;
@@ -27,11 +28,11 @@ use App\Mail\resetMail;
 class Login extends Component
 {
     public $estatus, $pertenece_al_psuv, $cargo_popular= false;
-    public $estados, $municipios, $parroquias, $comunas, $nivelesAcademicos, $niveles, $avanzadas, $responsabilidades = null;
+    public $estados, $municipios, $parroquias, $comunas, $nivelesAcademicos, $profesiones, $niveles, $avanzadas, $responsabilidades = null;
     public $cedula, $nacionalidadId, $correo, $direccion, $fechaNacimiento, $nombre, $apellido = null;
     public $generos, $cargo, $vocero = null;
     public $telefono, $edad, $inactivo, $id = null;
-    public $paisId, $estadoId, $municipioId, $parroquiaId, $comunaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
+    public $paisId, $estadoId, $municipioId, $parroquiaId, $comunaId, $nivelAcademicoId, $profesionId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
 
 
     public $email, $modalReset = null;
@@ -129,6 +130,10 @@ class Login extends Component
         $this->municipios = null;
         $this->parroquias = null;
         $this->estados = null;
+        $this->comunas = null;
+        $this->comunaId = null;
+        $this->profesionId = null;
+        $this->profesiones = null;
     }
     public function updatedEstadoId($id)
     {
@@ -144,6 +149,10 @@ class Login extends Component
     public function updatedParroquiaId($id){
         $this->comunaId = null;
         $this->comunas = Comuna::where('parroquia_id', $id)->get();
+    }
+    public function updatedNivelAcademicoId($id){
+        $this->profesionId = null;
+        $this->profesiones = Profesion::where('nivel_academico_id', $id)->get();
     }
     public function consultar()
     {
@@ -214,6 +223,7 @@ class Login extends Component
             'avanzadaId' => $this->avanzadaId,
             'genero_id' => $this->generoId,
             'nivel_academico_id' => $this->nivelAcademicoId,
+            'profesion_id' => $this->profesionId,
             'responsabilidad_id' => $this->responsabilidadId,
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
