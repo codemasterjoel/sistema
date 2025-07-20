@@ -220,7 +220,7 @@ class Login extends Component
             'fecha_nac' => $this->fechaNacimiento,
             'telefono' => $this->telefono,
             'correo' => $this->correo,
-            'avanzadaId' => $this->avanzadaId,
+            'avanzada_id' => $this->avanzadaId,
             'genero_id' => $this->generoId,
             'nivel_academico_id' => $this->nivelAcademicoId,
             'profesion_id' => $this->profesionId,

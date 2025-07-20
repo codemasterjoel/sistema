@@ -163,7 +163,7 @@ class Index extends Component
         $this->telefono = $lsb->telefono;
         $this->nivelAcademicoId = $lsb->nivel_academico_id;
         $this->profesionId = $lsb->profesion_id;
-        $this->avanzadaId = $lsb->avanzada_id;
+        $this->avanzadaId = $lsb['avanzada_id'];
         $this->responsabilidadId = $lsb->responsabilidad_id;
         $this->estadoId = $lsb->estado_id;
         $this->municipioId = $lsb->municipio_id;
