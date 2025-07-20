@@ -40,6 +40,7 @@ return new class extends Migration
             $table->foreignId('estado_id')->nullable()->references('id')->on('estados')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('municipio_id')->nullable()->references('id')->on('municipios')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('parroquia_id')->nullable()->references('id')->on('parroquias')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('comuna_id')->nullable()->references('id')->on('comunas')->nullOnDelete()->cascadeOnUpdate();
 
             $table->text('latitud')->nullable();
             $table->text('longitud')->nullable();

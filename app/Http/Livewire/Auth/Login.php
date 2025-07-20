@@ -14,6 +14,7 @@ use App\Models\Municipio;
 use App\Models\Parroquia;
 use App\Models\Saime;
 use App\Models\RegistroLuchador;
+use App\Models\Comuna;
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 
@@ -26,11 +27,11 @@ use App\Mail\resetMail;
 class Login extends Component
 {
     public $estatus, $pertenece_al_psuv, $cargo_popular= false;
-    public $estados, $municipios, $parroquias, $nivelesAcademicos, $niveles, $avanzadas, $responsabilidades = null;
+    public $estados, $municipios, $parroquias, $comunas, $nivelesAcademicos, $niveles, $avanzadas, $responsabilidades = null;
     public $cedula, $nacionalidadId, $correo, $direccion, $fechaNacimiento, $nombre, $apellido = null;
     public $generos, $cargo, $vocero = null;
     public $telefono, $edad, $inactivo, $id = null;
-    public $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
+    public $paisId, $estadoId, $municipioId, $parroquiaId, $comunaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
 
 
     public $email, $modalReset = null;
@@ -140,6 +141,10 @@ class Login extends Component
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
     }
+    public function updatedParroquiaId($id){
+        $this->comunaId = null;
+        $this->comunas = Comuna::where('parroquia_id', $id)->get();
+    }
     public function consultar()
     {
         
@@ -213,6 +218,7 @@ class Login extends Component
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
             'parroquia_id' => $this->parroquiaId,
+            'comuna_id' => $this->comunaId,
             'direccion' => $this->direccion,
             'edad' => $this->edad,
             'inactivo' => $this->inactivo,

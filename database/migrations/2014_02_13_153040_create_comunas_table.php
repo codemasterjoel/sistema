@@ -8,9 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('centros', function (Blueprint $table) {
+        Schema::create('comunas', function (Blueprint $table) {
             $table->id();
-            $table->integer('centro_id');
             $table->string('nombre');
             $table->foreignId('parroquia_id')->nullable()->references('id')->on('parroquias')->nullOnDelete()->cascadeOnUpdate();
             $table->timestamps();
@@ -18,6 +17,6 @@ return new class extends Migration
     }
     public function down(): void
     {
-        Schema::dropIfExists('centros');
+        Schema::dropIfExists('comunas');
     }
 };

@@ -231,7 +231,7 @@
                                         <div class="w-full rounded-lg">
                                             <div class="flex">
                                                 <span class="bg-cyan-400 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Parroquia</span>
-                                                <select class="w-full pl-3 border border-solid font-bold border-slate-900 text-slate-900 rounded-r-lg outline-2" wire:model="parroquiaId" required>
+                                                <select class="w-full pl-3 border border-solid font-bold border-slate-900 text-slate-900 rounded-r-lg outline-2" wire:model.live="parroquiaId" required>
                                                     <option value="">Seleccione</option>
                                                     @foreach( $parroquias as $parroquia )
                                                     <option value="{{ $parroquia->id }}">{{ $parroquia->nombre }}</option>
@@ -239,6 +239,26 @@
                                                 </select>
                                             </div>
                                             @error('parroquiaId') <div class="text-danger">{{ $message }}</div> @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="row">
+                            @if (!is_null($comunas)) {{-- campo Parroquia --}}
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                    <div class="flex items-center justify-center pt-4"> {{-- campo estado --}}
+                                        <div class="w-full rounded-lg">
+                                            <div class="flex">
+                                                <span class="bg-cyan-400 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Comuna o Circuito Comunal</span>
+                                                <select class="flex-auto w-[1px] pl-3 border border-solid rounded-r-lg border-slate-900 text-slate-900 outline-2 font-bold" wire:model="comunaId" required>
+                                                    <option value="">Seleccione</option>
+                                                    @foreach( $comunas as $comuna )
+                                                    <option value="{{ $comuna->id }}">{{ $comuna->nombre }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('comunaId') <div class="text-danger">{{ $message }}</div> @enderror
                                         </div>
                                     </div>
                                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Luchador;
 
+use App\Models\Comuna;
 use Livewire\Component;
 
 use App\Models\RegistroLuchador;
@@ -28,12 +29,12 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $estatus, $modal, $estado, $filtro = false;
-    public $estados, $municipios, $parroquias, $nivelesAcademicos, $niveles, $responsabilidades = null;
+    public $estados, $municipios, $parroquias, $comunas, $nivelesAcademicos, $niveles, $responsabilidades = null;
     public $cedula, $nacionalidadId, $avanzadas, $correo, $direccion, $fechaNacimiento, $nombre, $apellido = null;
     public $generos, $pertenece_al_psuv, $cargo, $vocero, $cargo_popular = null;
     public $telefono, $edad, $inactivo, $id = null;
     public $search = "";
-    public $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
+    public $paisId, $estadoId, $municipioId, $parroquiaId, $comunaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId, $nivelId = null; //Id que recibo de los campos
 
     public function updatingSearch()
     {
@@ -104,6 +105,8 @@ class Index extends Component
         $this->municipios = null;
         $this->parroquias = null;
         $this->estados = null;
+        $this->comunas = null;
+        $this->comunaId = null;
     }
     public function updatedEstadoId($id)
     {
@@ -159,6 +162,8 @@ class Index extends Component
         $this->municipios = Municipio::where('estado_id', $lsb->estado_id)->get();
         $this->parroquiaId = $lsb->parroquia_id;
         $this->parroquias = Parroquia::where('municipio_id', $lsb->municipio_id)->get();
+        $this->comunaId = $lsb['comuna_id'];
+        $this->comunas = Comuna::where('parroquia_id', $lsb['parroquia_id'])->get();
         $this->correo = $lsb->correo;
         $this->direccion = $lsb->direccion;
         $this->nacionalidadId = $lsb->letra;
