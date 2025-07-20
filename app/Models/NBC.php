@@ -43,7 +43,8 @@ class NBC extends Model
         'parroquia_id',
         'id',
         'latitud',
-        'longitud'
+        'longitud',
+        'comuna_id'
     ];
 
     public function estado()

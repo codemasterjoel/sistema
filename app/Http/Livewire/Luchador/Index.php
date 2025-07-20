@@ -119,6 +119,10 @@ class Index extends Component
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
     }
+    public function updatedParroquiaId($id){
+        $this->comunaId = null;
+        $this->comunas = Comuna::where('parroquia_id', $id)->get();
+    }
     public function consultar()
     {
         
@@ -216,6 +220,7 @@ class Index extends Component
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
             'parroquia_id' => $this->parroquiaId,
+            'comuna_id' => $this->comunaId,
             'direccion' => $this->direccion,
             'edad' => $this->edad,
             'inactivo' => $this->inactivo,

@@ -8,6 +8,7 @@ use App\Models\NBC;
 use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Parroquia;
+use App\Models\Comuna;
 use App\Models\RegistroLuchador;
 
 use Ramsey\Uuid\Uuid;
@@ -21,7 +22,7 @@ class Index extends Component
     public $modal, $PoseeOrganizador, $PoseeFormador, $PoseeMovilizador, $PoseeDefensa, $PoseeProductivo = false;
     public $ContentOrganizador, $ContentFormador, $ContentMovilizador, $ContentDefensa, $ContentProductivo = false;
     public $FormOrganizador, $FormFormador, $FormMovilizador, $FormDefensa, $FormProductivo = false;
-    public $estados, $municipios, $parroquias, $lat, $lon  = null; // Lista de parroquias
+    public $estados, $municipios, $parroquias, $comunas, $lat, $lon  = null; // Lista de parroquias
     public $CedulaJefe, $CedulaOrganizador, $CedulaFormador, $CedulaMovilizador, $CedulaDefensa, $CedulaProductivo = null; //Cedula
     public $NombreNBC, $id, $nbc = null; // Nombre del NBC
     public $CantConsejoComunal, $CantBaseMisiones, $CantUrbanismo, $CantCDI = null;
@@ -29,7 +30,7 @@ class Index extends Component
     public $IdJefe, $IdOrganizador, $IdFormador, $IdMovilizador, $IdDefensa, $IdProductivo = null; // nombre
     public $search = "";
 
-    public $estadoId, $municipioId, $parroquiaId = null; //Id que recibo de los campos
+    public $estadoId, $municipioId, $parroquiaId, $comunaId = null; //Id que recibo de los campos
 
     public $index = true;
 
@@ -74,6 +75,10 @@ class Index extends Component
     {
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
+    }
+    public function updatedParroquiaId($id){
+        $this->comunaId = null;
+        $this->comunas = Comuna::where('parroquia_id', $id)->get();
     }
     public function consultar($estructura)
     {
@@ -244,6 +249,8 @@ class Index extends Component
         $this->municipios = Municipio::where('estado_id', $nbc->estado_id)->get();
         $this->parroquiaId = $nbc->parroquia_id;
         $this->parroquias = Parroquia::where('municipio_id', $nbc->municipio_id)->get();
+        $this->comunaId = $nbc['comuna_id'];
+        $this->comunas = Comuna::where('parroquia_id', $nbc['parroquia_id'])->get();
 
         $this->CantConsejoComunal = $nbc->cant_consejos_comunales;
         $this->CantBaseMisiones = $nbc->cant_bases_misiones;
@@ -286,6 +293,7 @@ class Index extends Component
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
             'parroquia_id' => $this->parroquiaId,
+            'comuna_id' => $this->comunaId,
             'latitud' => $this->lat,
             'longitud' => $this->lon
         ]);
@@ -450,6 +458,10 @@ class Index extends Component
         $this->estadoId = null;
         $this->municipioId = null;
         $this->parroquiaId = null;
+        $this->comunaId = null;
+        $this->municipios = [];
+        $this->parroquias = [];
+        $this->comunas = [];
         $this->lat = null;
         $this->lon = null;
     }
