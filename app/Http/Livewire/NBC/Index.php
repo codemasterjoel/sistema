@@ -40,10 +40,38 @@ class Index extends Component
     }
     public function render()
     {
-        $nbcs = NBC::where('nombre', 'like', "%$this->search%")
-        ->paginate(5);
-        $this->estados = Estado::all();
-        return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
+                if (auth()->user()->nivel_id == 2) {
+                    
+                    $nbcs = NBC::where('nombre', 'like', "%$this->search%")
+                    ->where('estado_id', auth()->user()->estado_id)
+                    ->paginate(5);
+                    $this->estados = Estado::all();
+                    return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
+
+                } elseif (auth()->user()->nivel_id == 3) {
+                            
+                    $nbcs = NBC::where('nombre', 'like', "%$this->search%")
+                    ->where('munucipio_id', auth()->user()->municipio_id)
+                    ->paginate(5);
+                    $this->estados = Estado::all();
+                    return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
+
+                }elseif (auth()->user()->nivel_id == 3) {
+
+                    $nbcs = NBC::where('nombre', 'like', "%$this->search%")
+                    ->where('parroquia_id', auth()->user()->parroquia_id)
+                    ->paginate(5);
+                    $this->estados = Estado::all();
+                    return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
+
+                }else{
+
+                    $nbcs = NBC::where('nombre', 'like', "%$this->search%")
+                    ->paginate(5);
+                    $this->estados = Estado::all();
+                    return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
+                    
+                }
     }
     public function crear()
     {

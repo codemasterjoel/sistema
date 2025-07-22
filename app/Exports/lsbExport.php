@@ -11,13 +11,14 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
 class lsbExport implements FromCollection, WithColumnFormatting, ShouldAutoSize, WithHeadings, WithStyles, WithMapping
 {
     public function collection()
     {
-        return RegistroLuchador::with('estado')->get();
+        return RegistroLuchador::all();
     }
 
     public function map($luchador): array
@@ -145,10 +146,11 @@ class lsbExport implements FromCollection, WithColumnFormatting, ShouldAutoSize,
             'font' => [
                 'bold' => true,
                 'size' => 12,
+                'color' => ['argb' => 'FFFFFFFF'], // Blanco
             ],
             'fill' => [
-                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                'startColor' => ['argb' => 'FFE0E0E0'], // Gris claro
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['argb' => 'FF0000'], // Gris claro
             ],
         ]);
 
