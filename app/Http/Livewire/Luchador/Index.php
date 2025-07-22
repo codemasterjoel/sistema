@@ -43,17 +43,54 @@ class Index extends Component
     }
     public function render()
     {
-        $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
-        ->where('estado_id', '<>', '25')
-        ->paginate(5);
-        $this->estados = Estado::all();
-        $this->nivelesAcademicos = NivelAcademico::all();
-        $this->niveles = Nivel::all();
-        $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
-        $this->avanzadas = Avanzada::all();
-        $this->generos = Genero::all();
+        if (auth()->user()->nivel_id == 2) {
+                    
+            $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
+                ->where('estado_id', auth()->user()->estado_id)
+                ->paginate(5);
+                $this->estados = Estado::all();
+                $this->nivelesAcademicos = NivelAcademico::all();
+                $this->niveles = Nivel::all();
+                $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
+                $this->avanzadas = Avanzada::all();
+                $this->generos = Genero::all();
+                return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
 
-        return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
+        } elseif (auth()->user()->nivel_id == 3) {
+                    
+            $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
+                ->where('municipio_id', auth()->user()->municipio_id)
+                ->paginate(5);
+                $this->estados = Estado::all();
+                $this->nivelesAcademicos = NivelAcademico::all();
+                $this->niveles = Nivel::all();
+                $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
+                $this->avanzadas = Avanzada::all();
+                $this->generos = Genero::all();
+                return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
+
+        }elseif (auth()->user()->nivel_id == 3) {
+            $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
+                ->where('parroquia_id', auth()->user()->parroquia_id)
+                ->paginate(5);
+                $this->estados = Estado::all();
+                $this->nivelesAcademicos = NivelAcademico::all();
+                $this->niveles = Nivel::all();
+                $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
+                $this->avanzadas = Avanzada::all();
+                $this->generos = Genero::all();
+                return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
+        }else{
+            $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
+                ->paginate(5);
+                $this->estados = Estado::all();
+                $this->nivelesAcademicos = NivelAcademico::all();
+                $this->niveles = Nivel::all();
+                $this->responsabilidades = Responsabilidad::all()->pluck('nombre', 'id');
+                $this->avanzadas = Avanzada::all();
+                $this->generos = Genero::all();
+                return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
+        }
     }
     public function crear()
     {
