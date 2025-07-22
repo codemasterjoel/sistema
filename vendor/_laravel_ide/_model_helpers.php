@@ -626,6 +626,16 @@ namespace App\Models {
     /**
      * App\Models\Comuna
      *
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property mixed $parroquia_id
+     * @property string $nombre
+     * @property int $id
+     * @method static \Illuminate\Database\Eloquent\Builder<Comuna>|Comuna whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Comuna>|Comuna whereNombre($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Comuna>|Comuna whereParroquiaId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Comuna>|Comuna whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Comuna>|Comuna whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Comuna>|Comuna newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Comuna>|Comuna newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Comuna>|Comuna query()
@@ -1810,6 +1820,7 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string|null $longitud
      * @property string|null $latitud
+     * @property mixed $comuna_id
      * @property mixed $parroquia_id
      * @property mixed $municipio_id
      * @property mixed $estado_id
@@ -1859,6 +1870,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<NBC>|NBC whereEstadoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<NBC>|NBC whereMunicipioId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<NBC>|NBC whereParroquiaId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<NBC>|NBC whereComunaId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<NBC>|NBC whereLatitud($value)
      * @method static \Illuminate\Database\Eloquent\Builder<NBC>|NBC whereLongitud($value)
      * @method static \Illuminate\Database\Eloquent\Builder<NBC>|NBC whereCreatedAt($value)
@@ -2707,6 +2719,16 @@ namespace App\Models {
     /**
      * App\Models\Profesion
      *
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property mixed $nivel_academico_id
+     * @property string $nombre
+     * @property int $id
+     * @method static \Illuminate\Database\Eloquent\Builder<Profesion>|Profesion whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Profesion>|Profesion whereNombre($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Profesion>|Profesion whereNivelAcademicoId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Profesion>|Profesion whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Profesion>|Profesion whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Profesion>|Profesion newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Profesion>|Profesion newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Profesion>|Profesion query()
@@ -2986,11 +3008,13 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string $direccion
+     * @property mixed $comuna_id
      * @property mixed $parroquia_id
      * @property mixed $municipio_id
      * @property mixed $estado_id
      * @property mixed $nivel_responsabilidad_id
      * @property mixed $responsabilidad_id
+     * @property mixed $profesion_id
      * @property mixed $nivel_academico_id
      * @property mixed $genero_id
      * @property mixed $avanzada_id
@@ -3019,6 +3043,7 @@ namespace App\Models {
      * @property-read \App\Models\NivelAcademico $nivelAcademico
      * @property-read \App\Models\Responsabilidad $responsabilidad
      * @property-read \App\Models\NBC $nbc
+     * @property-read \App\Models\Comuna $comuna
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereLetra($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereEstatus($value)
@@ -3039,11 +3064,13 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereAvanzadaId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereGeneroId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereNivelAcademicoId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereProfesionId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereResponsabilidadId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereNivelResponsabilidadId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereEstadoId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereMunicipioId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereParroquiaId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereComunaId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereDireccion($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<RegistroLuchador>|RegistroLuchador whereUpdatedAt($value)

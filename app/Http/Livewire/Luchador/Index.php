@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Luchador;
 
-use App\Models\Comuna;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\lsbExport;
 
+use App\Models\Comuna;
 use App\Models\RegistroLuchador;
 use App\Models\Estado;
 use App\Models\Municipio;
@@ -352,5 +354,9 @@ class Index extends Component
     public function updatedNivelAcademicoId($id){
         $this->profesionId = null;
         $this->profesiones = Profesion::where('nivel_academico_id', $id)->get();
+    }
+    public function export()
+    {
+        return Excel::download(new lsbExport, 'lsb_export.xlsx');
     }
 }

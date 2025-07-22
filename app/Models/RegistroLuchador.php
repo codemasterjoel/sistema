@@ -84,4 +84,8 @@ class RegistroLuchador extends Model
     {
         return $this->belongsTo(NBC::class);
     }
+    public function comuna()
+    {
+        return $this->belongsTo(Comuna::class);
+    }
 }
