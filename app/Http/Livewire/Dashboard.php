@@ -18,6 +18,10 @@ class Dashboard extends Component
     public $nbc = null;
     public $jefexestado, $integrantexestado, $luchadores, $generos, $NivelAcademico, $responsabilidades = null;
 
+    public $modal, $PoseeOrganizador, $PoseeFormador, $PoseeMovilizador, $PoseeDefensa, $PoseeProductivo = false;
+    public $ContentLuchador, $ContentFormador, $ContentMovilizador, $ContentDefensa, $ContentProductivo = false;
+    public $FormOrganizador, $FormFormador, $FormMovilizador, $FormDefensa, $FormProductivo = false;
+
     public function render()
     {
         $this->jefe = registro1x10ffm::all()->count();
@@ -37,5 +41,18 @@ class Dashboard extends Component
         $this->jefexestado = DB::select('SELECT COUNT(*) as jefes, estados.nombre from registro_luchadors INNER JOIN estados on registro_luchadors.estado_id = estados.id GROUP BY estados.nombre ORDER BY estados.nombre DESC');
         $this->integrantexestado = DB::select('select estados.nombre, count(*) as integrantes from integrantes inner join registro1x10ffms on integrantes.jefe_id = registro1x10ffms.id INNER join estados on registro1x10ffms.estado_id = estados.id GROUP BY estados.nombre');
         return view('livewire.dashboard');
+    }
+
+    public function MenuLuchador()
+    {
+        if ($this->ContentLuchador) {
+            $this->ContentLuchador = false; 
+        } else {
+            $this->ContentLuchador = true; 
+            $this->ContentFormador = false;
+            $this->ContentMovilizador = false;
+            $this->ContentDefensa = false;
+            $this->ContentProductivo = false;
+        }
     }
 }
