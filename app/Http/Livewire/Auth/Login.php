@@ -72,7 +72,7 @@ class Login extends Component
     public function render()
     {
         $this->avanzadas = Avanzada::all();
-        $this->estados = Estado::all();
+        $this->estados = Estado::where('id', '<', 25)->get();
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->niveles = Nivel::all();
         $this->responsabilidades = Responsabilidad::all();

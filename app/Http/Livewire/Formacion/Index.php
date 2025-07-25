@@ -42,7 +42,7 @@ class Index extends Component
         $formacions = Formacion::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')->paginate(5);
         $campamento = Campamento::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')->paginate(5);
         $this->nivelesAcademicos = NivelAcademico::all();
-        $this->estados = Estado::all();
+        $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
         $this->niveles = Nivel::all();
 
         return view('livewire.formacion.index', ['lsbs'=>$lsbs, 'postulados'=>$postulados, 'formacions'=>$formacions, 'campamento'=>$campamento, 'campamentos'=>$campamento]);

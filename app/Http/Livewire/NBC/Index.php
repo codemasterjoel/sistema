@@ -45,7 +45,7 @@ class Index extends Component
             $nbcs = NBC::where('nombre', 'like', "%$this->search%")
             ->where('estado_id', auth()->user()->estado_id)
             ->paginate(5);
-            $this->estados = Estado::all();
+            $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
             return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
 
         } elseif (auth()->user()->nivel_id == 3) {
@@ -53,7 +53,7 @@ class Index extends Component
             $nbcs = NBC::where('nombre', 'like', "%$this->search%")
             ->where('munucipio_id', auth()->user()->municipio_id)
             ->paginate(5);
-            $this->estados = Estado::all();
+            $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
             return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
 
         }elseif (auth()->user()->nivel_id == 3) {
@@ -61,14 +61,14 @@ class Index extends Component
             $nbcs = NBC::where('nombre', 'like', "%$this->search%")
             ->where('parroquia_id', auth()->user()->parroquia_id)
             ->paginate(5);
-            $this->estados = Estado::all();
+            $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
             return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
 
         }else{
 
             $nbcs = NBC::where('nombre', 'like', "%$this->search%")
             ->paginate(5);
-            $this->estados = Estado::all();
+            $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
             return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
             
         }

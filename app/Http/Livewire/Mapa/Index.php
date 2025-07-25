@@ -15,7 +15,7 @@ class Index extends Component
 
     public function render()
     {
-        $estados = Estado::all();
+        $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
         //$this->nbcs = NBC::where('latitud', "<>", "")->get();
         $nbcs = NBC::where('latitud', "<>", "")->get();
 

@@ -38,7 +38,7 @@ class Dashboard extends Component
         $this->NivelAcademico = DB::select('SELECT count(*) as total, nivel_academicos.nombre from registro_luchadors INNER JOIN nivel_academicos on registro_luchadors.nivel_academico_id = nivel_academicos.id GROUP BY nivel_academicos.nombre ORDER BY total DESC');
         $this->responsabilidades = DB::select('SELECT count(*) as total, responsabilidads.nombre from registro_luchadors INNER JOIN responsabilidads on registro_luchadors.responsabilidad_id = responsabilidads.id GROUP BY responsabilidads.nombre ORDER BY total DESC');
         // dd($this->generos);
-        $this->jefexestado = DB::select('SELECT COUNT(*) as jefes, estados.nombre from registro_luchadors INNER JOIN estados on registro_luchadors.estado_id = estados.id GROUP BY estados.nombre ORDER BY estados.nombre DESC');
+        $this->jefexestado = DB::select('SELECT COUNT(*) as jefes, estados.nombre from registro_luchadors INNER JOIN estados on registro_luchadors.estado_id = estados.id GROUP BY estados.nombre ORDER BY estados.nombre Asc');
         $this->integrantexestado = DB::select('select estados.nombre, count(*) as integrantes from integrantes inner join registro1x10ffms on integrantes.jefe_id = registro1x10ffms.id INNER join estados on registro1x10ffms.estado_id = estados.id GROUP BY estados.nombre');
         return view('livewire.dashboard');
     }

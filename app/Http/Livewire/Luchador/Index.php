@@ -50,7 +50,7 @@ class Index extends Component
             $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
                 ->where('estado_id', auth()->user()->estado_id)
                 ->paginate(5);
-                $this->estados = Estado::all();
+                $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
                 $this->nivelesAcademicos = NivelAcademico::all();
                 $this->niveles = Nivel::all();
                 $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
@@ -63,7 +63,7 @@ class Index extends Component
             $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
                 ->where('municipio_id', auth()->user()->municipio_id)
                 ->paginate(5);
-                $this->estados = Estado::all();
+                $this->luchadores = RegistroLuchador::where('estado_id', '<', '25')->get();
                 $this->nivelesAcademicos = NivelAcademico::all();
                 $this->niveles = Nivel::all();
                 $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
@@ -71,11 +71,11 @@ class Index extends Component
                 $this->generos = Genero::all();
                 return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
 
-        }elseif (auth()->user()->nivel_id == 3) {
+        }elseif (auth()->user()->nivel_id == 4) {
             $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
                 ->where('parroquia_id', auth()->user()->parroquia_id)
                 ->paginate(5);
-                $this->estados = Estado::all();
+                $this->estados = Estado::where('id', '<', '25')->get();
                 $this->nivelesAcademicos = NivelAcademico::all();
                 $this->niveles = Nivel::all();
                 $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
@@ -84,8 +84,9 @@ class Index extends Component
                 return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
         }else{
             $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
+                ->where('estado_id', '<', '25')
                 ->paginate(5);
-                $this->estados = Estado::all();
+                $this->estados = Estado::where('id', '<', '25')->get();
                 $this->nivelesAcademicos = NivelAcademico::all();
                 $this->niveles = Nivel::all();
                 $this->responsabilidades = Responsabilidad::all()->pluck('nombre', 'id');

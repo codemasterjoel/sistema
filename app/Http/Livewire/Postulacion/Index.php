@@ -28,7 +28,7 @@ class Index extends Component
 
     public function render()
     {
-        $this->estados = Estado::all();
+        $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->generos = Genero::all();
         $this->niveles = Nivel::all();

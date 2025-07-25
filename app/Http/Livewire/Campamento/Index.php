@@ -26,7 +26,7 @@ class Index extends Component
     public $nacionalidad, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $nivelId, $generoId, $pertenece_al_psuv, $cargo, $vocero, $cargo_popular = null; //Id que recibo de las listas desplegables
     public function render()
     {
-        $this->estados = Estado::all();
+        $this->luchadores = RegistroLuchador::where('estado_id', '<>', '25')->get();
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->generos = Genero::all();
         $this->niveles = Nivel::all();
